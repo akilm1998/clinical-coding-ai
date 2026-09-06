@@ -1010,6 +1010,62 @@ def extract_dynamic_sections(
 
 
 # ============================================================
+# GET CODE METADATA
+# ============================================================
+
+
+def get_code_metadata(
+    heading_container: Tag,
+) -> dict:
+    """
+    Extract whether the ICD-10-CM code is billable/specific.
+
+    Returns:
+        {
+            "billable": True | False | None
+        }
+
+    None means the billable status could not be determined
+    from the page.
+    """
+
+    metadata: dict[str, Optional[bool]] = {
+        "billable": None,
+    }
+
+    for ul in heading_container.find_all_next("ul"):
+        previous_code = ul.find_previous(
+            "div",
+            class_="headingContainer",
+        )
+
+        if previous_code is not heading_container:
+            break
+
+        items = [
+            clean_text(li)
+            for li in ul.find_all(
+                "li",
+                recursive=False,
+            )
+        ]
+
+        for item in items:
+            item_lower = item.lower()
+
+            if "should not be used for reimbursement purposes" in item_lower:
+                metadata["billable"] = False
+
+            elif (
+                "is a billable/specific icd-10-cm code" in item_lower
+                and "reimbursement purposes" in item_lower
+            ):
+                metadata["billable"] = True
+
+    return metadata
+
+
+# ============================================================
 # MAIN ICD EXTRACTION FUNCTION
 # ============================================================
 
@@ -1081,19 +1137,26 @@ def get_icd10_info(
             return None
 
         # ----------------------------------------------------
-        # STEP 5: Extract sections.
+        # STEP 5: Extract code metadata.
+        # ----------------------------------------------------
+
+        metadata = get_code_metadata(heading_container)
+
+        # ----------------------------------------------------
+        # STEP 6: Extract sections.
         # ----------------------------------------------------
 
         sections = extract_dynamic_sections(heading_container)
 
         # ----------------------------------------------------
-        # STEP 6: Return structured data.
+        # STEP 7: Return structured data.
         # ----------------------------------------------------
 
         return {
             "code": code,
             "description": get_description(heading_container),
             "url": url,
+            "billable": metadata["billable"],
             "sections": sections,
         }
 
@@ -1127,6 +1190,8 @@ def print_icd10_info(
     print(f"DESCRIPTION: {data['description']}")
 
     print(f"URL: {data['url']}")
+
+    print(f"BILLABLE: {data['billable']}")
 
     for (
         section_name,
