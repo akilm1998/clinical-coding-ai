@@ -377,7 +377,7 @@ def collect_unique_codes(results: dict) -> list:
 
 
 def scrape_codes(codes):
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    with ThreadPoolExecutor(max_workers=5) as executor:
         results = list(executor.map(get_icd10_info, codes))
     return results
 
@@ -402,6 +402,7 @@ def scrape_codes_until_complete(codes, max_retries=3, retry_wait=5):
         scraped_results.extend(successful_results)
 
         if not failed_codes:
+            remaining_codes = []
             break
 
         remaining_codes = failed_codes
@@ -473,6 +474,81 @@ def analyze_scraped_results(scraped_results):
         "largest_code": largest_code,
         "largest_code_characters": largest_code_characters,
     }
+
+
+def analyze_section_sizes(scraped_results):
+    """
+    Analyze how much text each ICD-10 section contributes
+    to the scraped dataset.
+    """
+
+    section_sizes = {}
+
+    for result in scraped_results:
+        sections = result.get("sections", {})
+
+        for section_name, entries in sections.items():
+            if not isinstance(entries, list):
+                entries = [entries]
+
+            section_characters = sum(len(str(entry)) for entry in entries)
+
+            if section_name not in section_sizes:
+                section_sizes[section_name] = {
+                    "codes": 0,
+                    "entries": 0,
+                    "characters": 0,
+                }
+
+            section_sizes[section_name]["codes"] += 1
+            section_sizes[section_name]["entries"] += len(entries)
+            section_sizes[section_name]["characters"] += section_characters
+
+    return section_sizes
+
+
+def prepare_coding_context(scraped_results):
+    """
+    Prepare scraped ICD-10-CM information for LLM #2.
+
+    The original scraped results are preserved.
+    This function creates a reduced representation containing
+    information relevant to final coding reasoning.
+    """
+
+    sections_to_keep = {
+        "APPROXIMATE SYNONYMS",
+        "CLINICAL INFORMATION",
+        "APPLICABLE TO",
+        "USE ADDITIONAL",
+        "TYPE 1 EXCLUDES",
+        "TYPE 2 EXCLUDES",
+        "CODE FIRST",
+        "INCLUDES",
+        "CODE ALSO",
+    }
+
+    prepared_results = []
+
+    for result in scraped_results:
+        prepared_result = {
+            "code": result.get("code"),
+            "description": result.get("description"),
+            "billable": result.get("billable"),
+            "sections": {},
+        }
+
+        sections = result.get("sections", {})
+
+        for section_name, entries in sections.items():
+            if section_name not in sections_to_keep:
+                continue
+
+            prepared_result["sections"][section_name] = entries
+
+        prepared_results.append(prepared_result)
+
+    return prepared_results
 
 
 if __name__ == "__main__":
