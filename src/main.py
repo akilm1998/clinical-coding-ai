@@ -5,14 +5,19 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 from functions import (
-    analyze_scraped_results,
+    # analyze_scraped_results,
+    # analyze_section_sizes,
     build_coding_context,
     collect_unique_codes,
     get_data,
-    get_resource_summary,
+    # get_resource_summary,
+    prepare_coding_context,
     scrape_codes_until_complete,
 )
-from prompt import generate_clinical_conditions
+from prompt import (
+    generate_clinical_conditions,
+    generate_coding_decision,
+)
 from text_to_icd10 import text_to_icd10
 
 # patient_data_file = (
@@ -40,7 +45,7 @@ if __name__ == "__main__":
 
     data = get_data(patient_data_file)
 
-    resource_summary = get_resource_summary(data)
+    # resource_summary = get_resource_summary(data)
 
     encounters = [
         entry["resource"]
@@ -64,20 +69,21 @@ if __name__ == "__main__":
     clinical_conditions = generate_clinical_conditions(
         coding_context, client
     )  # LLM #1 JSON output from clinical condition extraction
-
+    with open("LLM1.txt", "w") as outfile:
+        outfile.write(clinical_conditions)
     # print(clinical_conditions)
 
     # Convert string to dictionary (LLM #1 JSON) for processing in text_to_icd10.py
 
     try:
-        data = json.loads(clinical_conditions)
+        clinical_extraction = json.loads(clinical_conditions)
 
     except json.JSONDecodeError as error:
         raise SystemExit(f"Invalid JSON: {error}")
 
     # Retrieve ICD-10 candidates from LLM #1 JSON
 
-    icd10_candidates = text_to_icd10(data)
+    icd10_candidates = text_to_icd10(clinical_extraction)
     # print(type(icd10_candidates))
     unique_candidate_codes = collect_unique_codes(icd10_candidates["results"])
     with open("unique_candidate_codes.txt", "w") as outfile:
@@ -96,18 +102,66 @@ if __name__ == "__main__":
     with open("scraped_icd10_codes.json", "w") as outfile:
         json.dump(scraped_results, outfile, indent=4)
 
+    prepared_icd_context = prepare_coding_context(
+        scraped_results
+    )  # Cleanup Structured Data for Coding Decision Context
+
     coding_decision_context = {
         "clinical_context": coding_context,
-        "clinical_extraction": clinical_conditions,
-        "icd10_candidates": scraped_results,
+        "clinical_extraction": clinical_extraction,
+        "icd10_context": prepared_icd_context,
     }
 
-    analysis = analyze_scraped_results(scraped_results)
+    # Save coding decision context and intermediate results to JSON files for individual review and debugging
+    with open("clinical_context.json", "w") as outfile:
+        json.dump(coding_decision_context, outfile, indent=4)
 
-    print()
-    print("=" * 60)
-    print("SCRAPED RESULTS ANALYSIS")
-    print("=" * 60)
+    with open("clinical_extraction.json", "w") as outfile:
+        json.dump(clinical_extraction, outfile, indent=4)
 
-    for key, value in analysis.items():
-        print(f"{key}: {value}")
+    with open("prepared_icd_context.json", "w") as outfile:
+        json.dump(prepared_icd_context, outfile, indent=4)
+    # analysis = analyze_scraped_results(prepared_icd_context)
+
+    # print()
+    # print("=" * 60)
+    # print("SCRAPED RESULTS ANALYSIS")
+    # print("=" * 60)
+
+    # for key, value in analysis.items():
+    #     print(f"{key}: {value}")
+
+    # section_sizes = analyze_section_sizes(prepared_icd_context)
+
+    # print()
+    # print("=" * 60)
+    # print("SECTION SIZE ANALYSIS")
+    # print("=" * 60)
+
+    # sorted_sections = sorted(
+    #     section_sizes.items(),
+    #     key=lambda item: item[1]["characters"],
+    #     reverse=True,
+    # )
+
+    # for section_name, stats in sorted_sections:
+    #     print(
+    #         f"{section_name}: "
+    #         f"{stats['characters']} characters | "
+    #         f"{stats['entries']} entries | "
+    #         f"{stats['codes']} codes"
+    #     )
+
+    coding_decision = generate_coding_decision(
+        coding_decision_context,
+        client,
+    )
+
+    print("\n")
+    print("=" * 60)
+    print("FINAL CODING DECISION")
+    print("=" * 60)
+    print(coding_decision)
+
+    with open("LLM2_decision.txt", "w") as outfile:
+        outfile.write(coding_decision)
