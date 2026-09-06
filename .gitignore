@@ -8,5 +8,4 @@ test.txt
 /notes*
 /*.parquet
 README_dup.md
-text_to_icd10.py
 src/patients/*
