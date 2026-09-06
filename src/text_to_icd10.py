@@ -96,64 +96,34 @@ def extract_code(search_line) -> Optional[str]:
     return code
 
 
-def extract_description(search_line, code: str) -> Optional[str]:
+def extract_description(
+    search_line,
+) -> Optional[str]:
     """
-    Extract the actual ICD-10 description from one
+    Extract the description shown for an ICD-10
     search result.
-
-    Avoid generic text such as:
-        ICD-10-CM Diagnosis Code I10
     """
 
-    # Look at all text-bearing elements in the result.
-    elements = search_line.find_all(["a", "span", "div", "strong"])
+    search_padded = search_line.select_one("div.searchPadded")
 
-    possible_descriptions = []
-
-    for element in elements:
-        text = clean_text(
-            element.get_text(
-                " ",
-                strip=True,
-            )
-        )
-
-        if not text:
-            continue
-
-        lower_text = text.lower()
-
-        # Ignore generic ICD page titles.
-        if lower_text.startswith("icd-10-cm diagnosis code"):
-            continue
-
-        # Ignore the code itself.
-        if text.upper() == code:
-            continue
-
-        # Ignore conversion links.
-        if lower_text == "[convert to icd-9-cm]":
-            continue
-
-        # Ignore very small fragments.
-        if len(text) < 3:
-            continue
-
-        possible_descriptions.append(text)
-
-    if not possible_descriptions:
+    if not search_padded:
         return None
 
-    # Prefer the longest meaningful text because the
-    # actual description should generally contain more
-    # information than individual words such as
-    # "pregnancy", "normal", or "history".
-    possible_descriptions.sort(
-        key=len,
-        reverse=True,
+    description = search_padded.find(
+        "div",
+        recursive=False,
     )
 
-    return possible_descriptions[0]
+    if not description:
+        return None
+
+    text = clean_text(
+        description.get_text(
+            " ",
+            strip=True,
+        )
+    )
+    return text or None
 
 
 def get_icd10_candidates(
@@ -203,10 +173,7 @@ def get_icd10_candidates(
         if not code:
             continue
 
-        description = extract_description(
-            search_line,
-            code,
-        )
+        description = extract_description(search_line)
 
         if not description:
             continue
