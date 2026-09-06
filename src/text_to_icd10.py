@@ -57,20 +57,30 @@ def text_to_words(text: str) -> list[str]:
 
 
 def calculate_match_score(
-    input_words: list[str],
-    candidate_text: str,
+    search_term: str,
+    candidate_description: str,
 ) -> int:
     """
-    Calculate keyword overlap between the search term
-    and the ICD-10 description.
+    Calculate a deterministic relevance score between
+    a search term and an ICD-10 description.
     """
 
-    candidate_words = text_to_words(candidate_text)
+    search_term = clean_text(search_term).lower()
+    candidate_description = clean_text(candidate_description).lower()
+
+    input_words = text_to_words(search_term)
+    candidate_words = text_to_words(candidate_description)
 
     input_set = set(input_words)
     candidate_set = set(candidate_words)
 
-    return len(input_set & candidate_set)
+    word_overlap = len(input_set & candidate_set)
+
+    score = word_overlap * 2
+
+    if search_term in candidate_description:
+        score += 3
+    return score
 
 
 def extract_code(search_line) -> Optional[str]:
@@ -145,8 +155,6 @@ def get_icd10_candidates(
 
     print(f"Searching for: {search_term}")
 
-    input_words = text_to_words(search_term)
-
     response = requests.get(
         f"{BASE_URL}/search",
         params={"s": search_term},
@@ -179,7 +187,7 @@ def get_icd10_candidates(
             continue
 
         score = calculate_match_score(
-            input_words,
+            search_term,
             description,
         )
 
@@ -237,19 +245,32 @@ def get_icd10_candidates(
     return candidates[:MAX_CANDIDATES]
 
 
-def process_condition(
-    condition: dict,
-) -> dict:
-    """
-    Retrieve ICD-10 candidates for one condition.
-    """
-
+def process_condition(condition: dict) -> dict:
     results = []
+    search_terms = []
+    unique_search_terms = []
+    seen_terms = set()
 
-    for search_term in condition.get(
-        "search_terms",
-        [],
-    ):
+    # Original retrieval terms
+    search_terms.extend(condition.get("search_terms", []))
+
+    # Medically precise terminology from LLM #1
+    search_terms.extend(condition.get("clinical_terms", []))
+
+    # Remove duplicate search terms while preserving order
+
+    for search_term in search_terms:
+        normalized_term = clean_text(search_term).lower()
+
+        if normalized_term in seen_terms:
+            continue
+
+        seen_terms.add(normalized_term)
+        unique_search_terms.append(search_term)
+
+    search_terms = unique_search_terms
+
+    for search_term in search_terms:
         candidates = get_icd10_candidates(search_term)
 
         results.append(
