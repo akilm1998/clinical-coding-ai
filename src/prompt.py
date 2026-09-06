@@ -42,9 +42,21 @@ CLINICAL TERMINOLOGY:
 
 For each condition, provide:
 
-- "clinical_terms": medically precise terminology and clinically relevant
-  synonyms supported by the supplied clinical context.
-- "search_terms": terminology useful for retrieving ICD-10-CM candidates.
+- "clinical_terms": medically precise terminology that represents the same
+  documented clinical concept.
+- "search_terms": terminology useful for retrieving ICD-10-CM candidates
+  for that same documented clinical concept.
+
+Do not combine a condition with another condition merely because both are
+present in the same encounter.
+
+For example, if the context documents obesity and pregnancy separately,
+do not create terminology such as "maternal obesity complicating pregnancy"
+unless that relationship or complication is explicitly documented or
+directly derivable from the supplied clinical evidence.
+
+Search terms must represent the documented clinical concept, not a possible
+coding relationship that has not been established.
 
 For each relationship, provide:
 
@@ -163,7 +175,7 @@ DYNAMIC CARDINALITY:
 FIELD DEFINITIONS:
 
 - "name": the condition identified from the supplied clinical context.
-- "status": the status supported by the supplied clinical context.
+- "status": the status supported by the supplied context.
 - "encounter_relevance": whether the condition is relevant to the current
   encounter.
 - "clinical_terms": medically precise terminology representing the same
@@ -241,7 +253,282 @@ IMPORTANT:
 - Do not include ICD-10-CM codes anywhere in the output.
 - Do not include Markdown code fences.
 - Do not include explanations before or after the JSON.
-- Do not use terminology that implies a clinical relationship, complication, encounter subtype, temporal state, or other qualifier unless that implication is supported by the supplied evidence.
+- Do not use terminology that implies a clinical relationship, complication,
+  encounter subtype, temporal state, or other qualifier unless that
+  implication is supported by the supplied evidence.
+"""
+
+    response = client.responses.create(
+        model="gpt-5.6-luna",
+        input=prompt,
+    )
+
+    return response.output_text
+
+
+def generate_coding_decision(coding_decision_context, client):
+    prompt = f"""
+You are an experienced ICD-10-CM coding decision reviewer.
+
+Review the supplied clinical evidence, clinical condition extraction,
+and retrieved ICD-10-CM information.
+
+Your task is to determine which ICD-10-CM candidate codes are supported
+by the documented clinical evidence and appropriate according to the
+supplied ICD-10-CM coding information.
+
+INPUTS:
+
+CLINICAL CONTEXT:
+{coding_decision_context["clinical_context"]}
+
+CLINICAL EXTRACTION:
+{coding_decision_context["clinical_extraction"]}
+
+ICD-10-CM CONTEXT:
+{coding_decision_context["icd10_context"]}
+
+
+CORE RULES:
+
+- Use the supplied clinical context as the source of truth for what is
+  documented about the patient.
+- Use the supplied ICD-10-CM context as the source of truth for code
+  descriptions and retrieved coding instructions.
+- An ICD-10-CM candidate existing in the retrieved context does not prove
+  that the patient has that condition.
+- Select a code only when the patient's clinical evidence supports the
+  condition represented by that code.
+- Do not introduce clinical facts that are not supported by the supplied
+  clinical evidence.
+- Do not infer missing specificity merely because a more specific code
+  exists.
+- Do not use clinical plausibility, common associations, or typical
+  disease progression as evidence for an undocumented characteristic.
+- Preserve the documented clinical meaning.
+- Evaluate the complete set of conditions and candidates together rather
+  than making isolated decisions for each candidate.
+- A candidate with "billable": false must not be selected as a final
+  ICD-10-CM code.
+- A candidate with "billable": true may be selected if it is otherwise
+  supported by the clinical evidence and applicable coding instructions.
+- A candidate with "billable": null has an unknown billable status.
+  Do not assume that it is billable.
+- Do not select ICD-10-CM category, chapter, or non-billable header codes as
+  final codes.
+- If a more specific candidate is not supported by the clinical evidence,
+  do not fall back to a broader category code merely because it exists in
+  the candidate set. Reject the unsupported specific candidates and select
+  a supported reportable code only if one is available.
+
+
+BILLABLE STATUS:
+
+- The "billable" field in the supplied ICD-10-CM context represents the
+  billable/specific status extracted from the ICD-10Data code page.
+- Treat this field as coding metadata, not as clinical evidence.
+- "billable": true means the candidate is identified as a billable/specific
+  ICD-10-CM code.
+- "billable": false means the candidate is identified as non-billable or
+  non-specific and must not be selected as a final code.
+- "billable": null means the billable status could not be determined from
+  the retrieved page. Do not assume the candidate is billable.
+- Billable status alone is not sufficient to select a code. The candidate
+  must also be supported by the clinical evidence and applicable coding
+  instructions.
+
+
+CLINICAL RELATIONSHIP VS CODING RELATIONSHIP:
+
+- A documented relationship between clinical conditions does not
+  automatically establish that a particular ICD-10-CM code applies.
+
+- Before selecting a code that represents a relationship, complication,
+  supervision category, or other coded association, verify that the
+  supplied clinical evidence supports the specific relationship required
+  by that code.
+
+- Do not use an ICD-10-CM code's description, approximate synonyms,
+  "applicable to" terminology, or other retrieved wording as evidence
+  that the patient meets the clinical criteria represented by that code.
+
+- For example, documentation of a current pregnancy and a history of
+  prior miscarriage does not by itself establish supervision of pregnancy
+  with poor reproductive or obstetric history.
+
+- A relationship may be retained in the clinical extraction for candidate
+  retrieval without being sufficient to support a final ICD-10-CM code.
+
+- The existence of a clinical relationship and the applicability of a
+  specific ICD-10-CM relationship code must be evaluated separately.
+
+
+CLINICAL SPECIFICITY:
+
+Only select a code requiring a qualifier when that qualifier is supported
+by the supplied clinical evidence.
+
+This includes, but is not limited to:
+
+- severity
+- stage
+- laterality
+- anatomical site
+- acuity
+- chronicity
+- recurrence
+- timing
+- pregnancy characteristics
+- complications
+- manifestations
+- underlying conditions
+
+If the evidence does not support a required qualifier, do not select the
+more specific code.
+
+
+COMBINATION CODES:
+
+Evaluate whether the supplied ICD-10-CM context contains a combination
+code that represents multiple documented conditions or a documented
+relationship between conditions.
+
+When a supported combination code exists, evaluate it against separate
+codes and prefer the appropriate combination-code representation when
+supported by the supplied evidence and coding instructions.
+
+Do not create a clinical relationship merely because two conditions
+commonly occur together.
+
+
+CODING INSTRUCTIONS:
+
+Evaluate applicable coding instructions contained in the supplied
+ICD-10-CM context, including:
+
+- CODE FIRST
+- USE ADDITIONAL
+- CODE ALSO
+- TYPE 1 EXCLUDES
+- TYPE 2 EXCLUDES
+- INCLUDES
+
+Follow these instructions when they apply to the documented clinical
+conditions.
+
+Do not treat coding instructions as evidence that a condition exists.
+
+
+PRIMARY AND SECONDARY ROLES:
+
+For selected codes:
+
+- "primary" means the code should be reported as the primary diagnosis
+  for the current encounter based on the supplied clinical evidence and
+  coding context.
+- "secondary" means the code is additionally supported and relevant to
+  the current encounter.
+
+Do not assign a primary or secondary role based only on candidate ranking.
+
+- A condition being documented in the patient's record does not by itself
+  make its code reportable for the current encounter.
+- Assign a secondary role only when the clinical context establishes that
+  the condition is relevant to the current encounter and the supplied
+  coding information supports reporting it.
+
+
+ADDITIONAL CODES:
+
+Use "additional_codes" when the supplied ICD-10-CM information indicates
+that another code should or may be reported in addition to a selected
+code, and the clinical evidence supports that additional code.
+
+Do not add an additional code merely because it is a plausible related
+condition.
+
+
+REJECTED CANDIDATES:
+
+Candidates that are not sufficiently supported should be placed in
+"rejected_candidates".
+
+Give a concise reason explaining why the candidate was rejected.
+
+Common reasons may include:
+
+- condition not documented
+- required specificity not documented
+- candidate represents a different condition
+- candidate conflicts with an applicable exclusion
+- combination code is more appropriate
+- coding instruction makes the candidate inappropriate
+- candidate is not relevant to the current encounter
+- specific coding relationship required by the candidate is not documented
+- candidate is a category or non-reportable code
+- candidate is non-billable
+
+
+REASON FIELD:
+
+For every selected, additional, or rejected code, provide a concise
+reason based on the supplied clinical evidence and/or applicable
+ICD-10-CM coding information.
+
+Do not invent evidence.
+
+
+OUTPUT:
+
+Return ONLY valid JSON using exactly this structure:
+
+{{
+    "selected_codes": [
+        {{
+            "code": "<ICD-10-CM code>",
+            "role": "<primary or secondary>",
+            "reason": "<concise evidence-based reason>"
+        }}
+    ],
+    "additional_codes": [
+        {{
+            "code": "<ICD-10-CM code>",
+            "reason": "<concise evidence-based reason>"
+        }}
+    ],
+    "rejected_candidates": [
+        {{
+            "code": "<ICD-10-CM code>",
+            "reason": "<concise evidence-based reason>"
+        }}
+    ]
+}}
+
+
+IMPORTANT:
+
+- Populate all values dynamically from the supplied inputs.
+- Do not copy placeholder values into the output.
+- Do not include ICD-10-CM codes that are not present in the supplied
+  ICD-10-CM context.
+- Do not include unsupported codes.
+- Do not invent clinical conditions.
+- Do not invent clinical relationships.
+- Do not invent qualifiers.
+- Do not use the ICD-10-CM context itself as evidence that a clinical
+  condition or relationship exists in the patient.
+- Do not use approximate synonyms as evidence that the patient satisfies
+  the corresponding code.
+- Do not infer that a documented clinical relationship satisfies the
+  specific relationship required by an ICD-10-CM code unless the supplied
+  clinical evidence supports that requirement.
+- Do not select a candidate with "billable": false.
+- Do not assume a candidate with "billable": null is billable.
+- Do not include Markdown code fences.
+- Do not include explanations before or after the JSON.
+- If no codes are supported, return empty "selected_codes" and
+  "additional_codes" lists.
+- Put unsupported candidates in "rejected_candidates" when appropriate.
 """
 
     response = client.responses.create(
