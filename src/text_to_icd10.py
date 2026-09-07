@@ -16,7 +16,7 @@ HEADERS = {
     )
 }
 
-MAX_CANDIDATES = 5
+MAX_CANDIDATES = 10
 
 STOP_WORDS = {
     "and",
@@ -203,6 +203,7 @@ def get_icd10_candidates(
         print("No ICD-10 results found.")
 
         return []
+    # print(f"Found {candidates}")
 
     # ---------------------------------------------
     # DEDUPLICATE CODES
@@ -222,6 +223,7 @@ def get_icd10_candidates(
             unique_candidates[code] = candidate
 
     candidates = list(unique_candidates.values())
+    print(candidates)
 
     # ---------------------------------------------
     # RANK CANDIDATES
@@ -405,10 +407,11 @@ def main():
             indent=2,
         )
     )
+    print("writing to icd10_candidates.json ...")
     with open("icd10_candidates.json", "w") as outfile:
         json.dump(output, outfile, indent=2)
 
 
 if __name__ == "__main__":
-    main()
-    # get_icd10_candidates("Dental caries")
+    # main()
+    get_icd10_candidates("Type 2 diabetes mellitus")

@@ -10,7 +10,7 @@ Your task is to:
 1. Identify conditions relevant to the current encounter.
 2. Distinguish current conditions from historical conditions.
 3. Identify clinically meaningful relationships between conditions when
-   supported by the supplied evidence.
+   supported by the overall supplied clinical evidence.
 4. Enrich conditions and relationships with medically precise terminology
    that can improve downstream ICD-10-CM candidate retrieval.
 
@@ -52,11 +52,10 @@ present in the same encounter.
 
 For example, if the context documents obesity and pregnancy separately,
 do not create terminology such as "maternal obesity complicating pregnancy"
-unless that relationship or complication is explicitly documented or
-directly derivable from the supplied clinical evidence.
+unless the supplied clinical evidence supports that relationship.
 
-Search terms must represent the documented clinical concept, not a possible
-coding relationship that has not been established.
+Search terms must represent the documented clinical concept or a clinically
+supported relationship involving that concept.
 
 For each relationship, provide:
 
@@ -113,13 +112,27 @@ another.
 
 RELATIONSHIPS:
 
-Identify a relationship only when it is supported by the supplied clinical
-context.
+Relationship extraction is a clinical reasoning task.
 
-A relationship should describe the actual clinical connection between the
-identified conditions rather than simply stating that they coexist.
+Evaluate the conditions together using the complete supplied clinical
+context. Do not evaluate each condition independently when determining
+whether a clinically meaningful relationship exists.
 
-The relationship may represent a documented or directly derivable:
+Identify a relationship when the overall clinical evidence supports a
+meaningful connection between two or more documented conditions.
+
+A relationship can be supported by:
+
+- an explicit statement in a clinical note
+- an assessment or plan statement
+- an encounter diagnosis
+- structured clinical terminology
+- the combination of multiple documented clinical conditions
+- observations or procedures that provide supporting clinical context
+- other clinical evidence that, when considered together, supports the
+  relationship
+
+The relationship may represent:
 
 - causal relationship
 - etiological relationship
@@ -129,14 +142,121 @@ The relationship may represent a documented or directly derivable:
 - current condition and relevant historical condition
 - other clinically meaningful relationship
 
-Do not infer a relationship solely because two conditions commonly occur
-together or are present in the same patient.
+Do not require the relationship to appear as one literal sentence.
 
-Relationship terminology and search terms must follow the same
-evidence-grounding rule as condition terminology.
+The supplied clinical context may contain separate pieces of evidence that
+must be correlated to identify a clinically meaningful relationship.
 
-Do not use relationships to introduce clinical facts that are absent from
-the supplied context.
+For example, if the supplied context contains:
+
+- Type 2 diabetes mellitus
+- Chronic kidney disease
+- both conditions are active and confirmed
+- both conditions are relevant to the same clinical case
+
+evaluate whether the overall clinical evidence supports a relationship
+between Type 2 diabetes mellitus and chronic kidney disease.
+
+If the clinical evidence supports that the CKD is related to the diabetes,
+identify that relationship.
+
+However, do not automatically create the relationship merely because
+diabetes and CKD coexist.
+
+Distinguish between:
+
+    Type 2 diabetes + CKD
+    -> relationship may be unsupported
+
+and:
+
+    Type 2 diabetes + CKD
+    + additional clinical evidence supporting a diabetes-related kidney
+      condition
+    -> clinically supported relationship
+
+Do not infer a relationship solely because two conditions:
+
+- share the same encounter
+- occur at the same time
+- appear in the same patient
+- are medically plausible associations
+- commonly occur together
+- have a known epidemiological association
+
+However, these facts may be considered together with other clinical
+evidence when determining whether the overall case supports a meaningful
+relationship.
+
+The goal is to identify relationships supported by the clinical case, not
+to require a literal relationship statement.
+
+IMPORTANT:
+
+Do not use ICD-10-CM coding knowledge to manufacture a clinical
+relationship.
+
+For example, do not reason:
+
+"ICD-10-CM has a diabetes-with-CKD combination code, therefore diabetes must
+be causing this patient's CKD."
+
+The clinical relationship must be supported by the supplied clinical
+evidence.
+
+Likewise, do not reject a clinically supported relationship merely because
+the relationship is not explicitly written as a single sentence.
+
+When a relationship is identified, describe the actual relationship
+supported by the evidence.
+
+Do not strengthen the relationship beyond the evidence.
+
+For example, if the supplied evidence supports that CKD is related to Type 2
+diabetes mellitus, do not additionally claim:
+
+- diabetic nephropathy
+- proteinuria
+- renal failure
+- a specific diabetic renal manifestation
+
+unless those facts are separately supported.
+
+Relationship extraction is separate from final coding.
+
+You are identifying the clinical relationship that exists in the supplied
+case so that downstream ICD-10-CM retrieval and coding reasoning can evaluate
+it.
+
+Do not assign an ICD-10-CM code to the relationship.
+
+
+RELATIONSHIP TERMINOLOGY:
+
+For each identified relationship:
+
+- "relationship": describe the clinically supported connection between the
+  conditions.
+- "clinical_terms": provide medically precise terminology representing that
+  relationship.
+- "search_terms": provide terminology useful for retrieving ICD-10-CM
+  candidates representing that relationship.
+
+Relationship terminology may be more specific than the individual condition
+names when the relationship itself provides that specificity.
+
+For example, if the clinical evidence supports a relationship between
+Type 2 diabetes mellitus and chronic kidney disease, useful terminology
+could include:
+
+- diabetes mellitus with chronic kidney disease
+- diabetic chronic kidney disease
+- chronic kidney disease due to Type 2 diabetes mellitus
+
+Only use terminology that is supported by the supplied clinical evidence.
+
+Do not use relationship terminology merely because it would lead to a
+more specific ICD-10-CM code.
 
 
 SEARCH TERMS:
@@ -153,6 +273,15 @@ Search terms may include:
 - supported clinical synonyms
 - supported qualifiers
 - supported relationship terminology
+
+When a clinically supported relationship is identified, relationship
+search terms may represent the combined clinical concept.
+
+For example:
+
+- Type 2 diabetes mellitus with chronic kidney disease
+- diabetic chronic kidney disease
+- chronic kidney disease due to Type 2 diabetes mellitus
 
 Do not include ICD-10-CM codes in the output.
 
@@ -243,6 +372,11 @@ IMPORTANT:
 - Do not invent conditions or relationships.
 - Do not invent clinical qualifiers.
 - Do not include unsupported specificity.
+- Evaluate multiple pieces of clinical evidence together when determining
+  relationships.
+- Do not require an explicit relationship sentence when the overall
+  clinical evidence supports the relationship.
+- Do not infer relationships solely from simple co-occurrence.
 - If no additional clinical terminology is supported, return an empty
   "clinical_terms" list.
 - If no useful supported retrieval terminology exists, return an empty

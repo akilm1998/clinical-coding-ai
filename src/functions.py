@@ -362,6 +362,7 @@ def build_coding_context(data, encounter_id):
         "current_issues": encounter_data["conditions"],
         "historical_active_conditions": active_conditions,
         "clinical_notes": clinical_notes,
+        # "procedures": encounter_data["procedures"],
     }
 
 
