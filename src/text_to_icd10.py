@@ -33,6 +33,130 @@ STOP_WORDS = {
 }
 
 
+## LIST OF UNAMBIGUOUS ABBREVIATIONS, TESTS/MEASUREMENTS, AND IMAGING PROCEDURES
+
+UNAMBIGUOUS_ABBREVIATIONS = {
+    "ckd": "chronic kidney disease",
+    "aki": "acute kidney injury",
+    "arf": "acute renal failure",
+    "esrd": "end-stage renal disease",
+    "crf": "chronic renal failure",
+    "t1dm": "type 1 diabetes mellitus",
+    "t2dm": "type 2 diabetes mellitus",
+    "dka": "diabetic ketoacidosis",
+    "hhs": "hyperosmolar hyperglycemic state",
+    "htn": "hypertension",
+    "hld": "hyperlipidemia",
+    "hlp": "hyperlipidemia",
+    "cad": "coronary artery disease",
+    "chf": "congestive heart failure",
+    "hfref": "heart failure with reduced ejection fraction",
+    "hfpef": "heart failure with preserved ejection fraction",
+    "afib": "atrial fibrillation",
+    "svt": "supraventricular tachycardia",
+    "vt": "ventricular tachycardia",
+    "vf": "ventricular fibrillation",
+    "mi": "myocardial infarction",
+    "ami": "acute myocardial infarction",
+    "nstemi": "non-ST-elevation myocardial infarction",
+    "stemi": "ST-elevation myocardial infarction",
+    "acs": "acute coronary syndrome",
+    "pci": "percutaneous coronary intervention",
+    "cabg": "coronary artery bypass grafting",
+    "copd": "chronic obstructive pulmonary disease",
+    "osa": "obstructive sleep apnea",
+    "ards": "acute respiratory distress syndrome",
+    "cap": "community-acquired pneumonia",
+    "hap": "hospital-acquired pneumonia",
+    "vap": "ventilator-associated pneumonia",
+    "tb": "tuberculosis",
+    "uri": "upper respiratory infection",
+    "uti": "urinary tract infection",
+    "gerd": "gastroesophageal reflux disease",
+    "ibs": "irritable bowel syndrome",
+    "ibd": "inflammatory bowel disease",
+    "uc": "ulcerative colitis",
+    "pcos": "polycystic ovary syndrome",
+    "sle": "systemic lupus erythematosus",
+    "als": "amyotrophic lateral sclerosis",
+    "gbs": "Guillain-Barré syndrome",
+    "cva": "cerebrovascular accident",
+    "tia": "transient ischemic attack",
+    "ich": "intracerebral hemorrhage",
+    "sah": "subarachnoid hemorrhage",
+    "dvt": "deep vein thrombosis",
+    "vte": "venous thromboembolism",
+    "ida": "iron deficiency anemia",
+    "nsclc": "non-small cell lung cancer",
+    "sclc": "small cell lung cancer",
+    "hcc": "hepatocellular carcinoma",
+    "rcc": "renal cell carcinoma",
+    "crc": "colorectal cancer",
+    "aml": "acute myeloid leukemia",
+    "cll": "chronic lymphocytic leukemia",
+    "cml": "chronic myeloid leukemia",
+    "nhl": "non-Hodgkin lymphoma",
+}
+
+# UNAMBIGUOUS_TESTS_MEASUREMENTS = {
+#     "bmi": "body mass index",
+#     "spo2": "oxygen saturation",
+#     "cbc": "complete blood count",
+#     "bmp": "basic metabolic panel",
+#     "cmp": "comprehensive metabolic panel",
+#     "lft": "liver function tests",
+#     "rft": "renal function tests",
+#     "ua": "urinalysis",
+#     "ucx": "urine culture",
+#     "bcx": "blood culture",
+#     "hba1c": "hemoglobin A1c",
+#     "a1c": "hemoglobin A1c",
+#     "crp": "C-reactive protein",
+#     "esr": "erythrocyte sedimentation rate",
+#     "bnp": "B-type natriuretic peptide",
+#     "nt-probnp": "N-terminal pro-B-type natriuretic peptide",
+#     "trop": "troponin",
+#     "tsh": "thyroid-stimulating hormone",
+#     "ft4": "free thyroxine",
+#     "psa": "prostate-specific antigen",
+#     "cea": "carcinoembryonic antigen",
+#     "afp": "alpha-fetoprotein",
+#     "inr": "international normalized ratio",
+#     "aptt": "activated partial thromboplastin time",
+#     "abg": "arterial blood gas",
+#     "vbg": "venous blood gas",
+#     "bun": "blood urea nitrogen",
+#     "egfr": "estimated glomerular filtration rate",
+# }
+
+# UNAMBIGUOUS_IMAGING_PROCEDURES = {
+#     "cxr": "chest X-ray",
+#     "cta": "computed tomography angiography",
+#     "mri": "magnetic resonance imaging",
+#     "mra": "magnetic resonance angiography",
+#     "echo": "echocardiogram",
+#     "ekg": "electrocardiogram",
+#     "ecg": "electrocardiogram",
+#     "pet": "positron emission tomography",
+#     "pet-ct": "positron emission tomography computed tomography",
+#     "cpap": "continuous positive airway pressure",
+#     "bipap": "bilevel positive airway pressure",
+#     "niv": "noninvasive ventilation",
+#     "ett": "endotracheal tube",
+#     "trach": "tracheostomy",
+#     "rbbb": "right bundle branch block",
+#     "lbbb": "left bundle branch block",
+#     "lvh": "left ventricular hypertrophy",
+#     "lvef": "left ventricular ejection fraction",
+#     "pvc": "premature ventricular contraction",
+#     "pac": "premature atrial contraction",
+#     "ppm": "permanent pacemaker",
+#     "picc": "peripherally inserted central catheter",
+#     "cvc": "central venous catheter",
+#     "cvp": "central venous pressure",
+# }
+
+
 def clean_text(text: str) -> str:
     """
     Normalize whitespace.
@@ -56,6 +180,50 @@ def text_to_words(text: str) -> list[str]:
     return [word for word in words if word not in STOP_WORDS]
 
 
+def normalize_clinical_terms(text: str) -> str:
+    """
+    Normalize unambiguous clinical abbreviations.
+
+    Only abbreviations from UNAMBIGUOUS_ABBREVIATIONS are replaced.
+    Word boundaries are used so that an abbreviation is not replaced
+    when it appears as part of another word.
+    """
+
+    text = clean_text(text).lower()
+
+    # Replace longer abbreviations first so multi-character terms
+    # are handled before shorter ones.
+    abbreviations = sorted(
+        UNAMBIGUOUS_ABBREVIATIONS.items(),
+        key=lambda item: len(item[0]),
+        reverse=True,
+    )
+
+    for abbreviation, full_term in abbreviations:
+        pattern = rf"(?<![a-z0-9]){re.escape(abbreviation.lower())}(?![a-z0-9])"
+
+        text = re.sub(
+            pattern,
+            full_term.lower(),
+            text,
+        )
+
+    return clean_text(text)
+
+
+def extract_consecutive_phrases(
+    words: list[str],
+    phrase_length: int,
+) -> set[str]:
+    """
+    Extract consecutive word phrases from a list of words.
+    """
+    return {
+        " ".join(words[i : i + phrase_length])
+        for i in range(len(words) - phrase_length + 1)
+    }
+
+
 def calculate_match_score(
     search_term: str,
     candidate_description: str,
@@ -63,9 +231,16 @@ def calculate_match_score(
     """
     Calculate a deterministic relevance score between
     a search term and an ICD-10 description.
+
+    Scoring rewards:
+        - meaningful word overlap
+        - complete query coverage
+        - exact phrase matches
+
+    Clinical abbreviations are normalized before scoring.
     """
 
-    search_term = clean_text(search_term).lower()
+    search_term = normalize_clinical_terms(search_term)
     candidate_description = clean_text(candidate_description).lower()
 
     input_words = text_to_words(search_term)
@@ -74,12 +249,34 @@ def calculate_match_score(
     input_set = set(input_words)
     candidate_set = set(candidate_words)
 
+    if not input_set:
+        return 0
+
     word_overlap = len(input_set & candidate_set)
 
-    score = word_overlap * 2
+    search_phrases = extract_consecutive_phrases(
+        input_words,
+        phrase_length=2,
+    )
 
+    candidate_phrases = extract_consecutive_phrases(
+        candidate_words,
+        phrase_length=2,
+    )
+
+    phrase_overlap = len(search_phrases & candidate_phrases)
+
+    # Base relevance from shared meaningful terms.
+    score = score = (word_overlap * 2) + (phrase_overlap * 3)
+
+    # Reward candidates containing all meaningful query terms.
+    if input_set.issubset(candidate_set):
+        score += 4
+
+    # Strong reward when the complete normalized phrase appears.
     if search_term in candidate_description:
-        score += 3
+        score += 6
+
     return score
 
 
@@ -414,4 +611,4 @@ def main():
 
 if __name__ == "__main__":
     # main()
-    get_icd10_candidates("Type 2 diabetes mellitus")
+    get_icd10_candidates("CKD stage 1")
