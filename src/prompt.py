@@ -22,11 +22,24 @@ CORE RULES:
 
 - Use the supplied coding context as the source of truth.
 - Return only conditions supported by the supplied clinical context.
-- Consider the current encounter issues first.
-- Include historical conditions when the supplied encounter information,
-  clinical note, assessment/plan, procedures, observations, or other
-  supplied evidence establishes that they are relevant to the current
-  encounter.
+- Consider the current encounter issues and current encounter documentation first.
+- "current_issues" contains conditions explicitly associated with the current
+  encounter and should be treated as current-encounter evidence.
+- "active_conditions" contains conditions that are clinically active in the
+  patient's history as of the current encounter date. An active condition is
+  NOT automatically a current-encounter condition.
+- For each active condition, determine whether the supplied
+  "condition_evidence" or current encounter information establishes that the
+  condition is relevant to the current encounter.
+- Classify an active condition as a current condition only when the supplied
+  evidence establishes current-encounter relevance.
+- If an active condition is not relevant to the current encounter, do not place
+  it in "current_conditions".
+- Place an active condition in "historical_conditions" only when the supplied
+  context establishes that it is a relevant historical condition.
+- If an active condition has no evidence establishing relevance to the current
+  encounter or relevant historical context, omit it rather than treating it
+  as current.
 - Do not include historical conditions merely because they exist somewhere
   in the patient's record.
 - Preserve the condition status supported by the supplied context.
@@ -36,6 +49,38 @@ CORE RULES:
 - Do not make the final coding decision.
 - Do not determine primary or secondary diagnosis sequencing.
 - Do not determine billing reportability.
+
+
+ENCOUNTER RELEVANCE AND TEMPORAL STATUS:
+
+The current encounter is the encounter identified by "current_encounter".
+
+An active condition may have been diagnosed or documented during an earlier
+encounter. The fact that its clinicalStatus is "active" means that the
+condition remains active in the patient's clinical history; it does not mean
+that the condition is part of the current encounter.
+
+Use encounter references, encounter dates, current_issues, current clinical
+notes, and condition_evidence to determine whether an active condition is
+relevant to the current encounter.
+
+For example:
+
+- Current encounter: 2026 general examination
+- Active condition: Type 2 diabetes mellitus
+- Condition evidence: diabetes documented in a 2000 encounter
+- Current encounter documentation: no diabetes assessment, treatment, or
+  other indication that diabetes is relevant to the 2026 encounter
+
+In this situation, do NOT classify diabetes as a current condition merely
+because it is active.
+
+Likewise, do not assume that every active chronic condition must be coded for
+every encounter.
+
+An older condition may be classified as historical when the supplied context
+supports that historical classification. Otherwise, omit it from the condition
+lists rather than treating it as current.
 
 
 CLINICAL TERMINOLOGY:
@@ -56,15 +101,6 @@ unless the supplied clinical evidence supports that relationship.
 
 Search terms must represent the documented clinical concept or a clinically
 supported relationship involving that concept.
-
-For each relationship, provide:
-
-- "relationship": a concise description of the supported clinical
-  relationship.
-- "clinical_terms": medically precise terminology describing the
-  relationship.
-- "search_terms": terminology useful for retrieving ICD-10-CM candidates
-  for that relationship.
 
 Use the most clinically specific terminology that is supported by the
 supplied evidence.
@@ -108,6 +144,57 @@ must not change its factual meaning.
 Keep qualifiers attached to the condition or clinical event they actually
 describe. Do not transfer characteristics from one condition or event to
 another.
+
+
+SEARCH-TERM SPECIFICITY:
+
+Search terms are retrieval terminology, but they must preserve the clinical
+specificity of the documented concept.
+
+- Preserve documented qualifiers such as stage, severity, laterality,
+  anatomical site, acuity, chronicity, subtype, and other clinically
+  meaningful distinctions in search terms whenever those qualifiers are
+  relevant to identifying the documented condition.
+- Do not replace a specific documented condition with a broader synonym when
+  doing so could retrieve a different clinical concept or ICD-10-CM category.
+- Do not generate a synonym that changes, weakens, or removes a clinically
+  meaningful qualifier from the documented condition.
+- A search term may be broader only when it remains clinically equivalent
+  to the documented concept and does not introduce ambiguity between
+  clinically distinct conditions or ICD-10-CM candidates.
+- When the documented condition contains a stage or severity, prefer search
+  terms that explicitly retain that stage or severity.
+- When no clinically equivalent alternative terminology can preserve the
+  documented specificity, use the original documented terminology as the
+  search term rather than inventing a broader synonym.
+
+For example:
+
+If the documented condition is:
+
+    Chronic kidney disease stage 1
+
+Good search terms include:
+
+    "Chronic kidney disease stage 1"
+    "CKD stage 1"
+
+Do NOT use a broader or potentially ambiguous term such as:
+
+    "Mild chronic kidney disease"
+
+because the broader term may correspond to a different CKD stage or
+different ICD-10-CM candidate.
+
+This principle applies generally and is not limited to chronic kidney disease.
+
+For each relationship, provide:
+
+- "relationship": a concise description of the supported clinical
+  relationship.
+- "clinical_terms": medically precise terminology describing the relationship.
+- "search_terms": terminology useful for retrieving ICD-10-CM candidates
+  for that relationship.
 
 
 RELATIONSHIPS:
@@ -255,8 +342,8 @@ could include:
 
 Only use terminology that is supported by the supplied clinical evidence.
 
-Do not use relationship terminology merely because it would lead to a
-more specific ICD-10-CM code.
+Do not use relationship terminology merely because it would lead to a more
+specific ICD-10-CM code.
 
 
 SEARCH TERMS:
@@ -274,14 +361,19 @@ Search terms may include:
 - supported qualifiers
 - supported relationship terminology
 
-When a clinically supported relationship is identified, relationship
-search terms may represent the combined clinical concept.
+When a clinically supported relationship is identified, relationship search
+terms may represent the combined clinical concept.
 
 For example:
 
 - Type 2 diabetes mellitus with chronic kidney disease
 - diabetic chronic kidney disease
 - chronic kidney disease due to Type 2 diabetes mellitus
+
+All search terms must remain clinically faithful to the documented concept.
+
+Do not broaden, weaken, or remove clinically meaningful specificity merely
+to increase the number of retrieval matches.
 
 Do not include ICD-10-CM codes in the output.
 
@@ -305,12 +397,13 @@ FIELD DEFINITIONS:
 
 - "name": the condition identified from the supplied clinical context.
 - "status": the status supported by the supplied context.
-- "encounter_relevance": whether the condition is relevant to the current
-  encounter.
+- "encounter_relevance": whether the supplied clinical evidence establishes
+  that the condition is relevant to the current encounter. Do not set this
+  to true merely because the condition is active in the patient's history.
 - "clinical_terms": medically precise terminology representing the same
   documented clinical concept.
 - "search_terms": retrieval terminology for finding plausible ICD-10-CM
-  candidates.
+  candidates while preserving the documented clinical specificity.
 - "condition_1": first condition participating in the relationship.
 - "condition_2": second condition participating in the relationship.
 - "relationship": clinically meaningful description of the supported
@@ -377,6 +470,10 @@ IMPORTANT:
 - Do not require an explicit relationship sentence when the overall
   clinical evidence supports the relationship.
 - Do not infer relationships solely from simple co-occurrence.
+- Preserve clinically meaningful specificity in search terms.
+- Do not replace a specific documented condition with a broader or ambiguous
+  synonym when that could lead to a different clinical concept or
+  ICD-10-CM candidate.
 - If no additional clinical terminology is supported, return an empty
   "clinical_terms" list.
 - If no useful supported retrieval terminology exists, return an empty
@@ -423,12 +520,40 @@ ICD-10-CM CONTEXT:
 {coding_decision_context["icd10_context"]}
 
 
+INFORMATION HIERARCHY:
+
+The three inputs have different roles and must not be treated as
+equivalent sources of information.
+
+1. CLINICAL CONTEXT is the authoritative source for what is actually
+   documented about the patient and the current encounter.
+
+2. CLINICAL EXTRACTION is a structured interpretation of the supplied
+   clinical context produced by an earlier extraction step. Use it to
+   organize and connect documented clinical concepts, but do not treat
+   it as independent evidence.
+
+3. ICD-10-CM CONTEXT contains retrieved coding knowledge, including code
+   descriptions, billable status, and coding instructions. It is the
+   authoritative source for the supplied coding information, but it is
+   never evidence that the patient has a condition.
+
+If the clinical extraction conflicts with the clinical context, rely on
+the clinical context.
+
+If the ICD-10-CM context suggests a condition, relationship, qualifier,
+or characteristic that is not supported by the clinical context, do not
+treat that information as evidence.
+
+
 CORE RULES:
 
-- Use the supplied clinical context as the source of truth for what is
-  documented about the patient.
-- Use the supplied ICD-10-CM context as the source of truth for code
-  descriptions and retrieved coding instructions.
+- Use the clinical context as the source of truth for what is documented
+  about the patient and the current encounter.
+- Use the clinical extraction as structured guidance for interpreting the
+  documented clinical evidence.
+- Use the ICD-10-CM context as the source of truth for supplied code
+  descriptions, billable status, and retrieved coding instructions.
 - An ICD-10-CM candidate existing in the retrieved context does not prove
   that the patient has that condition.
 - Select a code only when the patient's clinical evidence supports the
@@ -442,59 +567,49 @@ CORE RULES:
 - Preserve the documented clinical meaning.
 - Evaluate the complete set of conditions and candidates together rather
   than making isolated decisions for each candidate.
-- A candidate with "billable": false must not be selected as a final
-  ICD-10-CM code.
-- A candidate with "billable": true may be selected if it is otherwise
-  supported by the clinical evidence and applicable coding instructions.
-- A candidate with "billable": null has an unknown billable status.
-  Do not assume that it is billable.
-- Do not select ICD-10-CM category, chapter, or non-billable header codes as
-  final codes.
-- If a more specific candidate is not supported by the clinical evidence,
-  do not fall back to a broader category code merely because it exists in
-  the candidate set. Reject the unsupported specific candidates and select
-  a supported reportable code only if one is available.
+- Do not use ICD-10-CM coding knowledge to manufacture a clinical
+  condition or clinical relationship.
+- Do not use approximate synonyms from the ICD-10-CM context as evidence
+  that the patient satisfies a code.
 
 
 BILLABLE STATUS:
 
 - The "billable" field in the supplied ICD-10-CM context represents the
   billable/specific status extracted from the ICD-10Data code page.
-- Treat this field as coding metadata, not as clinical evidence.
-- "billable": true means the candidate is identified as a billable/specific
-  ICD-10-CM code.
+- Treat billable status as coding metadata, not as clinical evidence.
+- "billable": true means the candidate is identified as a
+  billable/specific ICD-10-CM code.
 - "billable": false means the candidate is identified as non-billable or
-  non-specific and must not be selected as a final code.
-- "billable": null means the billable status could not be determined from
-  the retrieved page. Do not assume the candidate is billable.
+  non-specific and must not be selected as a final ICD-10-CM code.
+- "billable": null means the billable status could not be determined.
+  Do not assume that the candidate is billable.
 - Billable status alone is not sufficient to select a code. The candidate
   must also be supported by the clinical evidence and applicable coding
   instructions.
+- Do not select ICD-10-CM category, chapter, or non-billable header codes
+  as final codes.
 
 
 CLINICAL RELATIONSHIP VS CODING RELATIONSHIP:
 
 - A documented relationship between clinical conditions does not
   automatically establish that a particular ICD-10-CM code applies.
-
 - Before selecting a code that represents a relationship, complication,
   supervision category, or other coded association, verify that the
   supplied clinical evidence supports the specific relationship required
   by that code.
-
-- Do not use an ICD-10-CM code's description, approximate synonyms,
+- Do not use an ICD-10-CM code description, approximate synonym,
   "applicable to" terminology, or other retrieved wording as evidence
   that the patient meets the clinical criteria represented by that code.
-
-- For example, documentation of a current pregnancy and a history of
-  prior miscarriage does not by itself establish supervision of pregnancy
-  with poor reproductive or obstetric history.
-
-- A relationship may be retained in the clinical extraction for candidate
-  retrieval without being sufficient to support a final ICD-10-CM code.
-
+- A relationship may be retained in the clinical extraction for
+  candidate retrieval without being sufficient to support a final code.
 - The existence of a clinical relationship and the applicability of a
   specific ICD-10-CM relationship code must be evaluated separately.
+- Do not create a clinical relationship merely because two conditions
+  commonly occur together.
+- Do not infer a coding relationship solely from a medically plausible
+  association.
 
 
 CLINICAL SPECIFICITY:
@@ -520,6 +635,8 @@ This includes, but is not limited to:
 If the evidence does not support a required qualifier, do not select the
 more specific code.
 
+Do not infer a qualifier from a candidate's description.
+
 
 COMBINATION CODES:
 
@@ -529,10 +646,10 @@ relationship between conditions.
 
 When a supported combination code exists, evaluate it against separate
 codes and prefer the appropriate combination-code representation when
-supported by the supplied evidence and coding instructions.
+supported by the clinical evidence and coding instructions.
 
-Do not create a clinical relationship merely because two conditions
-commonly occur together.
+Do not create a clinical relationship merely because a combination code
+exists or because two conditions commonly occur together.
 
 
 CODING INSTRUCTIONS:
@@ -552,6 +669,9 @@ conditions.
 
 Do not treat coding instructions as evidence that a condition exists.
 
+A coding instruction may determine how supported conditions should be
+represented, but it must not create an unsupported condition.
+
 
 PRIMARY AND SECONDARY ROLES:
 
@@ -570,6 +690,10 @@ Do not assign a primary or secondary role based only on candidate ranking.
 - Assign a secondary role only when the clinical context establishes that
   the condition is relevant to the current encounter and the supplied
   coding information supports reporting it.
+- Do not assume that the most clinically significant chronic condition is
+  automatically the primary diagnosis.
+- Base sequencing on the supplied encounter context and applicable coding
+  information.
 
 
 ADDITIONAL CODES:
@@ -580,6 +704,8 @@ code, and the clinical evidence supports that additional code.
 
 Do not add an additional code merely because it is a plausible related
 condition.
+
+An additional code must itself be supported by the clinical evidence.
 
 
 REJECTED CANDIDATES:
@@ -610,6 +736,11 @@ reason based on the supplied clinical evidence and/or applicable
 ICD-10-CM coding information.
 
 Do not invent evidence.
+
+For selected and additional codes, explain why the code is supported.
+
+For rejected candidates, explain the decisive reason the candidate is not
+appropriate.
 
 
 OUTPUT:
@@ -658,6 +789,8 @@ IMPORTANT:
   clinical evidence supports that requirement.
 - Do not select a candidate with "billable": false.
 - Do not assume a candidate with "billable": null is billable.
+- Do not assign primary or secondary status based only on candidate
+  ranking.
 - Do not include Markdown code fences.
 - Do not include explanations before or after the JSON.
 - If no codes are supported, return empty "selected_codes" and

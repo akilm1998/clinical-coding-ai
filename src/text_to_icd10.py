@@ -16,7 +16,7 @@ HEADERS = {
     )
 }
 
-MAX_CANDIDATES = 10
+MAX_CANDIDATES = 25
 
 STOP_WORDS = {
     "and",
@@ -267,7 +267,7 @@ def calculate_match_score(
     phrase_overlap = len(search_phrases & candidate_phrases)
 
     # Base relevance from shared meaningful terms.
-    score = score = (word_overlap * 2) + (phrase_overlap * 3)
+    score = (word_overlap * 2) + (phrase_overlap * 3)
 
     # Reward candidates containing all meaningful query terms.
     if input_set.issubset(candidate_set):
@@ -420,7 +420,6 @@ def get_icd10_candidates(
             unique_candidates[code] = candidate
 
     candidates = list(unique_candidates.values())
-    print(candidates)
 
     # ---------------------------------------------
     # RANK CANDIDATES
@@ -432,6 +431,8 @@ def get_icd10_candidates(
             item["code"],
         )
     )
+
+    print(candidates)
 
     # for candidate in candidates:
     #     print(
@@ -611,4 +612,7 @@ def main():
 
 if __name__ == "__main__":
     # main()
-    get_icd10_candidates("CKD stage 1")
+    get_icd10_candidates("CKD stage 3")
+    # get_icd10_candidates("Type 2 diabetes without complications")
+    # get_icd10_candidates("Type 2 diabetes mellitus without complication")
+    # get_icd10_candidates("Diabetes mellitus type 2 without complications")

@@ -37,7 +37,26 @@ from text_to_icd10 import text_to_icd10
 # patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\src\patients\Dylan44_O'Keefe54_b5c8cec1-8415-25cf-b544-c19e84761e14.json" # CKD + diabetes
 
 # patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\src\patients\Dylan44_O'Keefe54_b5c8cec1-8415-25cf-b544-c19e84761e14 copy.json"
-patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\src\patients\Patient_final.json"  # CKD + diabetes
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\src\patients\Patient_final.json"  # CKD + diabetes
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_tests\case_10_negative_relationship.json" # Wellness checkup.
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_tests\case_02_diabetes_ckd_explicit_relationship.json"  # Explicit diabetes -> CKD relationship
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_tests\case_03_diabetes_hypertension_no_relationship.json"  # Diabetes + Hypertension, no relationship
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_tests\case_04_historical_relationship_not_current.json"  # Historical diabetes -> CKD relationship, not current
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_tests\case_08_historical_vs_current_condition.json"  # Historical vs Current Condition
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_tests\case_09_encounter_sequencing.json" # Prior active diabetes is correctly excluded from the current encounter and no ICD-10 codes are assigned.
+
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_tests\Joshua658_Farrell962_00000000-0000-03ea-1995-9d283e5b6d40.json"
+# Positive regression TESTS
+# From C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_cases\ I want all fhir cases down below as patient_data_file (30 cases)
+
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_cases\case_01_diabetes_single\generated\fhir\Ardelle563_Kuhic920_00000000-0000-0bb9-30a5-15eed41a1cd8.json"  # 1
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_cases\case_02_diabetes_ckd_explicit\generated\fhir\Cleo27_Thompson596_00000000-0000-0bba-2bdb-cd1920eec583.json"  # 2
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_cases\case_03_diabetes_ckd_coexistence\generated\fhir\Joel444_Kuhlman484_00000000-0000-0bbb-d81e-e56007528d4a.json"  # 3
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_cases\case_04_diabetes_hypertension_explicit\generated\fhir\Ola364_Swaniawski813_00000000-0000-0bbc-356e-5ec38745742e.json"  # 4
+# patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_cases\case_05_diabetes_hypertension_coexistence\generated\fhir\Ian270_Gerlach374_00000000-0000-0bbd-e1b1-770c6da93bf5.json"  # 5
+# patient_data_file = r"regression_cases/case_06_hypertension_single/generated/fhir/Yolonda722_Swift555_00000000-0000-0bbe-dce8-2e35ba7de49f.json"  # 6
+patient_data_file = r"C:\Users\akile\OneDrive\Desktop\medical-coding-project\synthetic-clinical-note-generator\regression_cases\case_07_ckd_stage_three\generated\fhir\Luis923_Pedroza523_00000000-0000-0bbf-892b-467ca0e1ac66.json"  # 7
+
 if __name__ == "__main__":
     # -----------------------------------
     # Load environment variables
@@ -62,7 +81,21 @@ if __name__ == "__main__":
     latest_encounter = max(
         encounters, key=lambda encounter: encounter["period"]["start"]
     )
-    # print(f"Latest Encounter: {latest_encounter['period']['start']}")
+    print("Latest Encounter:")
+    print(f"  Date: {latest_encounter['period']['start']}")
+    print(f"  Status: {latest_encounter.get('status')}")
+    print(f"  Class: {latest_encounter.get('class', {}).get('code')}")
+
+    print("  Type:")
+    for t in latest_encounter.get("type", []):
+        for coding in t.get("coding", []):
+            print(f"    {coding.get('display')} ({coding.get('code')})")
+
+    print("  Reason:")
+    for reason in latest_encounter.get("reasonCode", []):
+        for coding in reason.get("coding", []):
+            print(f"    {coding.get('display')} ({coding.get('code')})")
+
     # exit(0)
     latest_encounter_id = latest_encounter["id"]
 

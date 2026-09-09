@@ -149,6 +149,83 @@ def _find_resources_for_encounter(resource_type, encounter_id, resources):
     return matches
 
 
+def get_active_conditions(resources, current_date):
+    active_conditions = []
+
+    for resource in resources:
+        if resource.get("resourceType") != "Condition":
+            continue
+
+        condition_status = (
+            resource.get("clinicalStatus", {}).get("coding", [{}])[0].get("code")
+        )
+
+        if condition_status != "active":
+            continue
+
+        onset = resource.get("onsetDateTime")
+
+        if onset:
+            onset_date = datetime.fromisoformat(onset)
+
+            if onset_date > current_date:
+                continue
+
+        active_conditions.append(resource)
+
+    return active_conditions
+
+
+def get_condition_encounter(condition, encounters):
+    encounter_reference = condition.get("encounter", {}).get("reference")
+
+    if not encounter_reference:
+        return None
+
+    for encounter in encounters:
+        if encounter_reference.endswith(encounter.get("id", "")):
+            return encounter
+
+    return None
+
+
+def get_condition_evidence(condition, resources, encounters):
+
+    encounter = get_condition_encounter(condition, encounters)
+
+    if encounter is None:
+        return {"condition": condition, "evidence": []}
+
+    encounter_id = encounter.get("id")
+
+    encounter_evidence = {
+        "encounter_id": encounter_id,
+        "encounter_date": encounter.get("period", {}).get("start"),
+        "resources": {
+            "conditions": _find_resources_for_encounter(
+                "Condition", encounter_id, resources
+            ),
+            "procedures": _find_resources_for_encounter(
+                "Procedure", encounter_id, resources
+            ),
+            "observations": _find_resources_for_encounter(
+                "Observation", encounter_id, resources
+            ),
+            "medications": _find_resources_for_encounter(
+                "MedicationRequest", encounter_id, resources
+            ),
+            "diagnostic_reports": _find_resources_for_encounter(
+                "DiagnosticReport", encounter_id, resources
+            ),
+            "document_references": _find_resources_for_encounter(
+                "DocumentReference", encounter_id, resources
+            ),
+        },
+    }
+
+    return {"condition": condition, "evidence": [encounter_evidence]}
+
+
 def _extract_codeable_concept(items):
     """Extract coding information from CodeableConcept-like structures."""
 
@@ -302,8 +379,9 @@ def build_coding_context(data, encounter_id):
         - patient age at encounter
         - current encounter
         - conditions linked to the current encounter
-        - active/unresolved conditions as of the current encounter
-        - current clinical note
+        - active conditions as of the current encounter
+        - evidence from encounters explicitly attached to active conditions
+        - current clinical notes
     """
 
     normalized_data = normalize_patient_data(data)
@@ -319,32 +397,20 @@ def build_coding_context(data, encounter_id):
         encounter_date[:10],
     )
 
-    active_conditions = []
-
     resources = [
         entry["resource"] for entry in data.get("entry", []) if "resource" in entry
     ]
 
-    for resource in resources:
-        if resource.get("resourceType") != "Condition":
-            continue
+    active_conditions = get_active_conditions(resources, current_date)
 
-        condition_status = (
-            resource.get("clinicalStatus", {}).get("coding", [{}])[0].get("code")
+    condition_evidence = []
+
+    for condition in active_conditions:
+        evidence = get_condition_evidence(
+            condition, resources, normalized_data["encounters"]
         )
 
-        if condition_status != "active":
-            continue
-
-        onset = resource.get("onsetDateTime")
-
-        if onset:
-            onset_date = datetime.fromisoformat(onset)
-
-            if onset_date > current_date:
-                continue
-
-        active_conditions.append(resource)
+        condition_evidence.append(evidence)
 
     clinical_notes = [
         note["clinical_note"]
@@ -358,11 +424,15 @@ def build_coding_context(data, encounter_id):
             "age": age_at_encounter,
         },
         "current_encounter": encounter_data["encounter"],
-        "encounter_reason": (encounter_data["encounter_reason"]),
+        "encounter_reason": encounter_data["encounter_reason"],
         "current_issues": encounter_data["conditions"],
-        "historical_active_conditions": active_conditions,
+        "active_conditions": active_conditions,
+        "condition_evidence": condition_evidence,
         "clinical_notes": clinical_notes,
-        # "procedures": encounter_data["procedures"],
+        "procedures": encounter_data["procedures"],
+        "observations": encounter_data["observations"],
+        "medications": encounter_data["medications"],
+        "diagnostic_reports": encounter_data["diagnostic_reports"],
     }
 
 
