@@ -612,6 +612,39 @@ CLINICAL RELATIONSHIP VS CODING RELATIONSHIP:
   association.
 
 
+CONDITION-LEVEL CODING EVALUATION:
+
+- Every condition identified as current and encounter-relevant must be
+  independently evaluated for coding.
+- Independently evaluate each condition against the clinical evidence,
+  retrieved candidates, coding instructions, and other selected codes.
+- Independent evaluation does NOT mean that every condition must receive
+  a separate ICD-10-CM code.
+- A condition may be represented by a combination code, an etiology/
+  manifestation coding structure, or another applicable coding construct.
+- Do not omit a documented current, encounter-relevant condition solely
+  because it participates in a clinical relationship with another
+  condition.
+- Do not omit a condition merely because another selected code represents
+  part or all of the relationship between the conditions.
+- After identifying a supported combination code, determine whether each
+  documented condition is fully represented by that code or whether an
+  additional code is required or appropriate.
+- Do not add a redundant individual code when the applicable combination
+  code already represents that condition and no coding instruction
+  requires the additional individual code.
+- When a selected combination code requires an additional code to fully
+  identify a documented condition or qualifier, add that additional code
+  when supported by the clinical evidence.
+- The final code set should represent the documented encounter without
+  unnecessarily duplicating information.
+- A condition that is evaluated but not separately coded must have a
+  coding-based reason, such as being fully represented by a selected
+  combination code or being excluded by an applicable coding instruction.
+- Do not use a relationship itself as a reason to discard an otherwise
+  independently supported condition.
+
+
 CLINICAL SPECIFICITY:
 
 Only select a code requiring a qualifier when that qualifier is supported
@@ -648,8 +681,28 @@ When a supported combination code exists, evaluate it against separate
 codes and prefer the appropriate combination-code representation when
 supported by the clinical evidence and coding instructions.
 
-Do not create a clinical relationship merely because a combination code
-exists or because two conditions commonly occur together.
+When using a combination code:
+
+- Confirm that every clinical component represented by the combination
+  code is supported by the clinical evidence.
+- Do not additionally select separate codes for conditions already fully
+  represented by the combination code unless the supplied coding
+  information requires or supports an additional code.
+- Evaluate whether any documented condition or qualifier is not fully
+  represented by the combination code and therefore requires or supports
+  an additional code.
+- Do not omit a documented condition merely because it is related to
+  another condition.
+- Do not create a clinical relationship merely because a combination code
+  exists or because two conditions commonly occur together.
+
+For example, if the clinical evidence documents a diabetes complication
+and the supplied ICD-10-CM context supports a diabetes combination code,
+evaluate the combination code rather than automatically selecting both
+the combination code and the corresponding standalone diabetes code.
+If the combination code requires an additional code to identify a
+manifestation or other characteristic, evaluate and add that code when
+supported.
 
 
 CODING INSTRUCTIONS:
@@ -702,10 +755,13 @@ Use "additional_codes" when the supplied ICD-10-CM information indicates
 that another code should or may be reported in addition to a selected
 code, and the clinical evidence supports that additional code.
 
-Do not add an additional code merely because it is a plausible related
-condition.
-
-An additional code must itself be supported by the clinical evidence.
+- Additional codes must represent information that is not already fully
+  represented by the selected code set.
+- Do not add an additional code merely because it is a plausible related
+  condition.
+- Do not add a redundant code solely because the condition was independently
+  evaluated.
+- An additional code must itself be supported by the clinical evidence.
 
 
 REJECTED CANDIDATES:
@@ -727,6 +783,8 @@ Common reasons may include:
 - specific coding relationship required by the candidate is not documented
 - candidate is a category or non-reportable code
 - candidate is non-billable
+- condition is already fully represented by an appropriate selected
+  combination code and a separate code is not required
 
 
 REASON FIELD:
@@ -791,6 +849,15 @@ IMPORTANT:
 - Do not assume a candidate with "billable": null is billable.
 - Do not assign primary or secondary status based only on candidate
   ranking.
+- Do not assign a separate code merely because a condition was independently
+  evaluated.
+- Do not omit a current, encounter-relevant condition solely because it
+  participates in a relationship with another condition.
+- Do not select both a combination code and a redundant standalone code
+  when the combination code fully represents the same documented condition
+  and no supplied coding instruction requires the standalone code.
+- Add required additional codes when the supplied coding information
+  indicates they are needed.
 - Do not include Markdown code fences.
 - Do not include explanations before or after the JSON.
 - If no codes are supported, return empty "selected_codes" and
