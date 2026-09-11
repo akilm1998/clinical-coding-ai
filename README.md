@@ -1,25 +1,34 @@
-# Synthetic Clinical Note Generator
+# Clinical Coding AI
 
-A framework for generating synthetic clinical notes for
-machine learning research in medical coding.
+An AI/ML framework for extracting clinical context from longitudinal medical documentation and supporting ICD-10-CM coding decisions.
 
-## Versions
+## Project Evolution
 
-### V1 — Synthetic Note Generation + Baseline ML
+### [V1 — Synthetic Clinical Note Generation](https://github.com/akilm1998/clinical-coding-ai/tree/v1)
+Generated synthetic clinical notes from structured patient and diagnosis data to explore automated ICD-10 prediction.
 
-Initial end-to-end pipeline covering:
+### [V2 — ICD-10-CM Data Scraper](https://github.com/akilm1998/clinical-coding-ai/tree/v2)
+Built a deterministic scraper to retrieve ICD-10-CM code information and coding rules from ICD10Data.com.
 
-- Structured diagnosis and patient information
-- Synthetic patient generation
-- LLM-based clinical note generation
-- Dataset generation and export
-- Baseline ICD-10 prediction model
-- Identification of diagnosis-name leakage
+### [V3 — Evidence-Based Clinical Coding](https://github.com/akilm1998/clinical-coding-ai/tree/v3)
+Built a longitudinal, evidence-based coding pipeline that combines clinical context, ICD-10-CM retrieval, coding rules, and LLM-based decision making.
 
-[View V1](https://github.com/akilm1998/synthetic-clinical-note-generator/tree/v1)
+### V4 — Longitudinal Coding Visualization
+Planned visual interface for exploring longitudinal patient records and inspecting coding decisions across encounters.
 
----
+## Repository Structure
 
-### V2 — ICD-10 Clinical Information Extraction
+| Version | Branch | Focus |
+|---|---|---|
+| [V1](https://github.com/akilm1998/clinical-coding-ai/tree/v1) | `v1` | Synthetic clinical note generation |
+| [V2](https://github.com/akilm1998/clinical-coding-ai/tree/v2) | `v2` | ICD-10-CM data retrieval |
+| [V3](https://github.com/akilm1998/clinical-coding-ai/tree/v3) | `v3` | Evidence-based clinical coding |
+| V4 | `v4` | Longitudinal coding visualization |
 
-[View V2](https://github.com/akilm1998/synthetic-clinical-note-generator/tree/v2)
+## Current Version
+
+**V3 — Evidence-Based Clinical Coding**
+
+The project is currently focused on V3. V4 is planned as the next stage of development.
+
+> This is a research and engineering project and is not intended for clinical use or to replace professional medical coding judgment.
