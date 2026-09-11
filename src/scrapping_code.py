@@ -1327,9 +1327,3 @@ if __name__ == "__main__":
 
             print()
             print("=" * 70)
-
-            # except requests.exceptions.RequestException as exc:
-            #     print(f"Unable to retrieve hierarchy data: {exc}")
-
-            # finally:
-            #     session.close()

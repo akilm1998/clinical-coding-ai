@@ -5,13 +5,10 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 from functions import (
-    # analyze_scraped_results,
-    # analyze_section_sizes,
     build_coding_context,
     collect_unique_codes,
     expand_non_billable_codes,
     get_data,
-    # get_resource_summary,
     prepare_coding_context,
 )
 from prompt import (
@@ -64,8 +61,6 @@ if __name__ == "__main__":
     client = OpenAI(api_key=api_key)
 
     data = get_data(patient_data_file)
-
-    # resource_summary = get_resource_summary(data)
 
     encounters = [
         entry["resource"]
