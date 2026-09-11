@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_19",
+    "case_name":  "case_19_hypothyroidism_single",
+    "conditions":  [
+                       "Hypothyroidism (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bcb-a52b-dfe960b1f0ef",
+    "target_encounter_date":  "2003-01-11T10:10:50+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Hypothyroidism (disorder)",
+    "complaint":  "Follow-up for hypothyroidism",
+    "seed":  3019,
+    "clinician_seed":  4019,
+    "reference_date":  "20100101",
+    "end_date":  "20030210",
+    "module_filename":  "case_19_case_19_hypothyroidism_single.json",
+    "fhir_output_path":  "regression_cases/case_19_hypothyroidism_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_20",
+    "case_name":  "case_20_gerd_single",
+    "conditions":  [
+                       "Gastroesophageal reflux disease (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bcc-1d6b-5699baad0218",
+    "target_encounter_date":  "2003-01-13T07:16:55+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Gastroesophageal reflux disease (disorder)",
+    "complaint":  "Evaluation of gastroesophageal reflux symptoms",
+    "seed":  3020,
+    "clinician_seed":  4020,
+    "reference_date":  "20100101",
+    "end_date":  "20030212",
+    "module_filename":  "case_20_case_20_gerd_single.json",
+    "fhir_output_path":  "regression_cases/case_20_gerd_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

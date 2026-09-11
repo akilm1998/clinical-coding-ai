@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_21",
+    "case_name":  "case_21_osteoarthritis_single",
+    "conditions":  [
+                       "Osteoarthritis of knee (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bcd-aecb-1e7e6018aa03",
+    "target_encounter_date":  "2003-08-21T06:42:08+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Osteoarthritis of knee (disorder)",
+    "complaint":  "Evaluation of knee pain from osteoarthritis",
+    "seed":  3021,
+    "clinician_seed":  4021,
+    "reference_date":  "20100101",
+    "end_date":  "20030920",
+    "module_filename":  "case_21_case_21_osteoarthritis_single.json",
+    "fhir_output_path":  "regression_cases/case_21_osteoarthritis_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

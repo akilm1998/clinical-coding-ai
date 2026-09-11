@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_23",
+    "case_name":  "case_23_acute_bronchitis",
+    "conditions":  [
+                       "Acute bronchitis (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bcf-5b07-008dd3839312",
+    "target_encounter_date":  "2003-06-08T07:51:42+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Acute bronchitis (disorder)",
+    "complaint":  "Evaluation of cough due to acute bronchitis",
+    "seed":  3023,
+    "clinician_seed":  4023,
+    "reference_date":  "20100101",
+    "end_date":  "20030708",
+    "module_filename":  "case_23_case_23_acute_bronchitis.json",
+    "fhir_output_path":  "regression_cases/case_23_acute_bronchitis/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

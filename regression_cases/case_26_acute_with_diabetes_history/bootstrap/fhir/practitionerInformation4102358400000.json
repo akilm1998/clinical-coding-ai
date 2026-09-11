@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:11f41dec-e202-352e-bedc-4e4e68e58654",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "11f41dec-e202-352e-bedc-4e4e68e58654",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 103
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999947598"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Baumbach677",
+        "given": [ "Thad495" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Thad495.Baumbach677@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "17 CLARENCE ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016052430",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999947598"
+    }
+  }, {
+    "fullUrl": "urn:uuid:1de82ebe-62a8-9b09-b3c3-79215c9c6a2c",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "1de82ebe-62a8-9b09-b3c3-79215c9c6a2c",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999947598"
+        },
+        "display": "Dr. Thad495 Baumbach677"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d087a353-12da-3785-b121-fb1291f8a721"
+        },
+        "display": "CARE4US WELLNESS CENTER LLC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "63e3d3a2-4a26-3ffe-b12c-a88ff62304cd"
+        },
+        "display": "CARE4US WELLNESS CENTER LLC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083456983"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Thad495.Baumbach677@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:8f814dff-059d-3e91-a099-8e6fae34e590",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "8f814dff-059d-3e91-a099-8e6fae34e590",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 4
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999988196"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Rogahn59",
+        "given": [ "Nathanael908" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Nathanael908.Rogahn59@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "100 CENTURY DR" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016061244",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999988196"
+    }
+  }, {
+    "fullUrl": "urn:uuid:19f5b9a0-2e88-614c-0871-b295a50df15b",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "19f5b9a0-2e88-614c-0871-b295a50df15b",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999988196"
+        },
+        "display": "Dr. Nathanael908 Rogahn59"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "c0a33465-d309-3d2a-932e-9d554a7cc19c"
+        },
+        "display": "T MASSACHUSETTS, LLC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d0762819-91f4-31c2-8a2d-a21c2ddf46ec"
+        },
+        "display": "T MASSACHUSETTS, LLC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "7743667000"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Nathanael908.Rogahn59@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

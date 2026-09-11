@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_14",
+    "case_name":  "case_14_asthma_single",
+    "conditions":  [
+                       "Asthma (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bc6-1ac0-60424ddc487b",
+    "target_encounter_date":  "2003-01-09T13:04:44+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Asthma (disorder)",
+    "complaint":  "Evaluation of asthma control",
+    "seed":  3014,
+    "clinician_seed":  4014,
+    "reference_date":  "20100101",
+    "end_date":  "20030208",
+    "module_filename":  "case_14_case_14_asthma_single.json",
+    "fhir_output_path":  "regression_cases/case_14_asthma_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

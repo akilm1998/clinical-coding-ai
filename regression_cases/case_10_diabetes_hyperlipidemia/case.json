@@ -1,0 +1,33 @@
+﻿{
+    "case_id":  "case_10",
+    "case_name":  "case_10_diabetes_hyperlipidemia",
+    "conditions":  [
+                       "Diabetes mellitus type 2 (disorder)",
+                       "Hyperlipidemia (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bc2-9ee2-dca6f5631a7d",
+    "target_encounter_date":  "2003-08-15T15:23:51+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+    "complaint":  "Follow-up for diabetes and lipid management",
+    "seed":  3010,
+    "clinician_seed":  4010,
+    "reference_date":  "20100101",
+    "end_date":  "20030914",
+    "module_filename":  "case_10_case_10_diabetes_hyperlipidemia.json",
+    "fhir_output_path":  "regression_cases/case_10_diabetes_hyperlipidemia/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:b3f52466-9ba1-3b2d-82bb-9d44b57944ba",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "b3f52466-9ba1-3b2d-82bb-9d44b57944ba",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999988196"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Rogahn59",
+        "given": [ "Nathanael908" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Nathanael908.Rogahn59@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "100 CENTURY DR" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016061244",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999988196"
+    }
+  }, {
+    "fullUrl": "urn:uuid:4310e196-ef30-9880-6b07-54c828b7ba66",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "4310e196-ef30-9880-6b07-54c828b7ba66",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999988196"
+        },
+        "display": "Dr. Nathanael908 Rogahn59"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "c0a33465-d309-3d2a-932e-9d554a7cc19c"
+        },
+        "display": "T MASSACHUSETTS, LLC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d0762819-91f4-31c2-8a2d-a21c2ddf46ec"
+        },
+        "display": "T MASSACHUSETTS, LLC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "7743667000"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Nathanael908.Rogahn59@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:a58de71c-db58-3778-9e72-27ed3076c9b8",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "a58de71c-db58-3778-9e72-27ed3076c9b8",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 104
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999957498"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Wintheiser220",
+        "given": [ "Lelah386" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Lelah386.Wintheiser220@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "694 MAIN ST" ],
+        "city": "HOLDEN",
+        "state": "MA",
+        "postalCode": "015201862",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999957498"
+    }
+  }, {
+    "fullUrl": "urn:uuid:16175741-0eeb-f9b4-ce72-c742d5dbc59e",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "16175741-0eeb-f9b4-ce72-c742d5dbc59e",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999957498"
+        },
+        "display": "Dr. Lelah386 Wintheiser220"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "67cade01-dcfe-37b7-8e2c-b712d9e6fbba"
+        },
+        "display": "RUTLAND FAMILY HEALTH CENTER"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d628041f-ddab-3487-8c7d-9a876997a8c0"
+        },
+        "display": "RUTLAND FAMILY HEALTH CENTER"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088866500"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Lelah386.Wintheiser220@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

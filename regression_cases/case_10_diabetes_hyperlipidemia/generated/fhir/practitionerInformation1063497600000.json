@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:a731fc5e-fe64-33ee-86fa-e14a02b4b84a",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "a731fc5e-fe64-33ee-86fa-e14a02b4b84a",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999989996"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Blanda868",
+        "given": [ "Mora209" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Mora209.Blanda868@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "309 BELMONT STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016041059",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999989996"
+    }
+  }, {
+    "fullUrl": "urn:uuid:f3db6652-70b8-6570-ae1d-69c422082068",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "f3db6652-70b8-6570-ae1d-69c422082068",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999989996"
+        },
+        "display": "Dr. Mora209 Blanda868"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "45ce6eff-535b-37e2-bed3-1946200aa03f"
+        },
+        "display": "WORCESTER RECOVERY CENTER AND HOSPITAL"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "ee5239e9-1765-3495-bfe9-e55d2b2c4efa"
+        },
+        "display": "WORCESTER RECOVERY CENTER AND HOSPITAL"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087524681"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Mora209.Blanda868@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:2e466c26-b3e1-3983-8c03-69956e21cc30",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "2e466c26-b3e1-3983-8c03-69956e21cc30",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 27
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999975391"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "O'Keefe54",
+        "given": [ "Laci507" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Laci507.O'Keefe54@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "585 LINCOLN ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016051906",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999975391"
+    }
+  }, {
+    "fullUrl": "urn:uuid:b4be39c7-4374-623a-579d-f0709495e383",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "b4be39c7-4374-623a-579d-f0709495e383",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999975391"
+        },
+        "display": "Dr. Laci507 O'Keefe54"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "f5b88e0f-3f0a-3400-b56f-26247e2a35ac"
+        },
+        "display": "EDWARD M KENNEDY COMMUNITY HEALTH CENTER INC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d063366a-1e33-3b3e-9b18-a4bee4003581"
+        },
+        "display": "EDWARD M KENNEDY COMMUNITY HEALTH CENTER INC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088521805"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Laci507.O'Keefe54@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

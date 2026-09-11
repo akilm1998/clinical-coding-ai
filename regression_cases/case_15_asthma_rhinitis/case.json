@@ -1,0 +1,33 @@
+﻿{
+    "case_id":  "case_15",
+    "case_name":  "case_15_asthma_rhinitis",
+    "conditions":  [
+                       "Asthma (disorder)",
+                       "Allergic rhinitis (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+                                   "rhinitis -\u003e asthma symptoms"
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bc7-e495-db6ac541f677",
+    "target_encounter_date":  "2003-08-17T12:29:57+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Asthma (disorder)",
+    "complaint":  "Follow-up for asthma and allergic rhinitis",
+    "seed":  3015,
+    "clinician_seed":  4015,
+    "reference_date":  "20100101",
+    "end_date":  "20030916",
+    "module_filename":  "case_15_case_15_asthma_rhinitis.json",
+    "fhir_output_path":  "regression_cases/case_15_asthma_rhinitis/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:b8e75462-abb7-3890-8eb0-fcc21afd73e4",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "b8e75462-abb7-3890-8eb0-fcc21afd73e4",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999997692"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Frami345",
+        "given": [ "Annita733" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Annita733.Frami345@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "115 LINCOLN STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016081216",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999997692"
+    }
+  }, {
+    "fullUrl": "urn:uuid:2a0d0c5e-5a63-6499-c657-cf01bfdd6da4",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "2a0d0c5e-5a63-6499-c657-cf01bfdd6da4",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999997692"
+        },
+        "display": "Dr. Annita733 Frami345"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "0fa1cab9-83c1-3c85-b7bc-53d8b922e2f7"
+        },
+        "display": "METROWEST MEDICAL CENTER"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "5bf36fce-f48a-395f-bd66-65e47efb8703"
+        },
+        "display": "METROWEST MEDICAL CENTER"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083831000"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Annita733.Frami345@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:7fd60c0f-0d4e-3b3d-a438-433e58e0a0f8",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "7fd60c0f-0d4e-3b3d-a438-433e58e0a0f8",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 27
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999953596"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Abbott774",
+        "given": [ "Margarita164" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Margarita164.Abbott774@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "101 BARRY RD" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016091275",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999953596"
+    }
+  }, {
+    "fullUrl": "urn:uuid:f088a302-f70c-af41-d7fa-d730127340b8",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "f088a302-f70c-af41-d7fa-d730127340b8",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999953596"
+        },
+        "display": "Dr. Margarita164 Abbott774"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "6e517750-a29e-3170-a02b-5733ff523458"
+        },
+        "display": "TREE OF LIFE HEALTHCARE ASSOCIATES"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "96e6f38f-9af5-3f83-aae4-33f45466ae30"
+        },
+        "display": "TREE OF LIFE HEALTHCARE ASSOCIATES"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087677931"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Margarita164.Abbott774@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

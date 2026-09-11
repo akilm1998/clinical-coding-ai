@@ -1,0 +1,35 @@
+﻿{
+    "case_id":  "case_30",
+    "case_name":  "case_30_multiple_relationships",
+    "conditions":  [
+                       "Diabetes mellitus type 2 (disorder)",
+                       "Chronic kidney disease stage 1 (disorder)",
+                       "Essential hypertension (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+                                   "diabetes -\u003e CKD",
+                                   "diabetes -\u003e hypertension"
+                               ],
+    "intended_non_relationships":  [
+                                       "hypertension -\u003e CKD"
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bd6-8bb4-92b6cee3185a",
+    "target_encounter_date":  "2003-05-29T22:21:14+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+    "complaint":  "Complex follow-up for diabetes, renal disease, and hypertension",
+    "seed":  3030,
+    "clinician_seed":  4030,
+    "reference_date":  "20100101",
+    "end_date":  "20030628",
+    "module_filename":  "case_30_case_30_multiple_relationships.json",
+    "fhir_output_path":  "regression_cases/case_30_multiple_relationships/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

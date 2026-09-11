@@ -1,0 +1,33 @@
+﻿{
+    "case_id":  "case_03",
+    "case_name":  "case_03_diabetes_ckd_coexistence",
+    "conditions":  [
+                       "Diabetes mellitus type 2 (disorder)",
+                       "Chronic kidney disease stage 1 (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+                                       "diabetes -\u003e CKD"
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bbb-7101-5a4cd6767e89",
+    "target_encounter_date":  "2003-03-07T14:00:20+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+    "complaint":  "Follow-up for diabetes and kidney disease",
+    "seed":  3003,
+    "clinician_seed":  4003,
+    "reference_date":  "20100101",
+    "end_date":  "20030406",
+    "module_filename":  "case_03_case_03_diabetes_ckd_coexistence.json",
+    "fhir_output_path":  "regression_cases/case_03_diabetes_ckd_coexistence/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

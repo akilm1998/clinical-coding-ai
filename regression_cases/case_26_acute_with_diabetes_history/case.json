@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_26",
+    "case_name":  "case_26_acute_with_diabetes_history",
+    "conditions":  [
+                       "Acute bronchitis (disorder)"
+                   ],
+    "historical_conditions":  [
+                                  "Diabetes mellitus type 2 (disorder)"
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bd2-5553-52751afec2b3",
+    "target_encounter_date":  "2005-01-02T00:40:22+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Acute bronchitis (disorder)",
+    "complaint":  "Evaluation of acute bronchitis",
+    "seed":  3026,
+    "clinician_seed":  4026,
+    "reference_date":  "20100101",
+    "end_date":  "20050131",
+    "module_filename":  "case_26_case_26_acute_with_diabetes_history.json",
+    "fhir_output_path":  "regression_cases/case_26_acute_with_diabetes_history/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

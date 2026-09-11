@@ -1,0 +1,218 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:c0a33465-d309-3d2a-932e-9d554a7cc19c",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "c0a33465-d309-3d2a-932e-9d554a7cc19c",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-procedures-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-labs-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-prescriptions-extension",
+        "valueInteger": 0
+      } ],
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "c0a33465-d309-3d2a-932e-9d554a7cc19c"
+      } ],
+      "active": true,
+      "type": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        } ],
+        "text": "Healthcare Provider"
+      } ],
+      "name": "T MASSACHUSETTS, LLC",
+      "telecom": [ {
+        "system": "phone",
+        "value": "7743667000"
+      } ],
+      "address": [ {
+        "line": [ "100 CENTURY DR" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016061244",
+        "country": "US"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "Organization",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|c0a33465-d309-3d2a-932e-9d554a7cc19c"
+    }
+  }, {
+    "fullUrl": "urn:uuid:d0762819-91f4-31c2-8a2d-a21c2ddf46ec",
+    "resource": {
+      "resourceType": "Location",
+      "id": "d0762819-91f4-31c2-8a2d-a21c2ddf46ec",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" ]
+      },
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "d0762819-91f4-31c2-8a2d-a21c2ddf46ec"
+      } ],
+      "status": "active",
+      "name": "T MASSACHUSETTS, LLC",
+      "telecom": [ {
+        "system": "phone",
+        "value": "7743667000"
+      } ],
+      "address": {
+        "line": [ "100 CENTURY DR" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016061244",
+        "country": "US"
+      },
+      "position": {
+        "longitude": -71.7707002,
+        "latitude": 42.3138278
+      },
+      "managingOrganization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "c0a33465-d309-3d2a-932e-9d554a7cc19c"
+        },
+        "display": "T MASSACHUSETTS, LLC"
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|d0762819-91f4-31c2-8a2d-a21c2ddf46ec"
+    }
+  }, {
+    "fullUrl": "urn:uuid:67cade01-dcfe-37b7-8e2c-b712d9e6fbba",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "67cade01-dcfe-37b7-8e2c-b712d9e6fbba",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 104
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-procedures-extension",
+        "valueInteger": 1
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-labs-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-prescriptions-extension",
+        "valueInteger": 0
+      } ],
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "67cade01-dcfe-37b7-8e2c-b712d9e6fbba"
+      } ],
+      "active": true,
+      "type": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        } ],
+        "text": "Healthcare Provider"
+      } ],
+      "name": "RUTLAND FAMILY HEALTH CENTER",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088866500"
+      } ],
+      "address": [ {
+        "line": [ "694 MAIN ST" ],
+        "city": "HOLDEN",
+        "state": "MA",
+        "postalCode": "015201862",
+        "country": "US"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "Organization",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|67cade01-dcfe-37b7-8e2c-b712d9e6fbba"
+    }
+  }, {
+    "fullUrl": "urn:uuid:d628041f-ddab-3487-8c7d-9a876997a8c0",
+    "resource": {
+      "resourceType": "Location",
+      "id": "d628041f-ddab-3487-8c7d-9a876997a8c0",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" ]
+      },
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "d628041f-ddab-3487-8c7d-9a876997a8c0"
+      } ],
+      "status": "active",
+      "name": "RUTLAND FAMILY HEALTH CENTER",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088866500"
+      } ],
+      "address": {
+        "line": [ "694 MAIN ST" ],
+        "city": "HOLDEN",
+        "state": "MA",
+        "postalCode": "015201862",
+        "country": "US"
+      },
+      "position": {
+        "longitude": -71.8390289,
+        "latitude": 42.3406819
+      },
+      "managingOrganization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "67cade01-dcfe-37b7-8e2c-b712d9e6fbba"
+        },
+        "display": "RUTLAND FAMILY HEALTH CENTER"
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|d628041f-ddab-3487-8c7d-9a876997a8c0"
+    }
+  }, {
+    "fullUrl": "urn:uuid:bb1ad573-19b8-9cd8-68fb-0e6f684df992",
+    "resource": {
+      "resourceType": "Location",
+      "id": "bb1ad573-19b8-9cd8-68fb-0e6f684df992",
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "bb1ad573-19b8-9cd8-68fb-0e6f684df992"
+      } ],
+      "status": "active",
+      "description": "Patient's Home",
+      "mode": "kind",
+      "physicalType": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+          "code": "ho",
+          "display": "House"
+        } ]
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|bb1ad573-19b8-9cd8-68fb-0e6f684df992"
+    }
+  } ]
+}

@@ -1,0 +1,986 @@
+﻿[
+    {
+        "case_id":  "case_01",
+        "case_name":  "case_01_diabetes_single",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bb9-2fdc-cb8ccf99d2ef",
+        "target_encounter_date":  "2003-05-20T12:50:47+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Follow-up for type 2 diabetes mellitus",
+        "seed":  3001,
+        "clinician_seed":  4001,
+        "reference_date":  "20100101",
+        "end_date":  "20030619",
+        "module_filename":  "case_01_case_01_diabetes_single.json",
+        "fhir_output_path":  "regression_cases/case_01_diabetes_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_02",
+        "case_name":  "case_02_diabetes_ckd_explicit",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Chronic kidney disease stage 1 (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "diabetes -\u003e CKD"
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bba-1c04-a113d5a98d8a",
+        "target_encounter_date":  "2003-07-31T14:35:07+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Follow-up for type 2 diabetes mellitus and chronic kidney disease",
+        "seed":  3002,
+        "clinician_seed":  4002,
+        "reference_date":  "20100101",
+        "end_date":  "20030830",
+        "module_filename":  "case_02_case_02_diabetes_ckd_explicit.json",
+        "fhir_output_path":  "regression_cases/case_02_diabetes_ckd_explicit/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_03",
+        "case_name":  "case_03_diabetes_ckd_coexistence",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Chronic kidney disease stage 1 (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+                                           "diabetes -\u003e CKD"
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bbb-7101-5a4cd6767e89",
+        "target_encounter_date":  "2003-03-07T14:00:20+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Follow-up for diabetes and kidney disease",
+        "seed":  3003,
+        "clinician_seed":  4003,
+        "reference_date":  "20100101",
+        "end_date":  "20030406",
+        "module_filename":  "case_03_case_03_diabetes_ckd_coexistence.json",
+        "fhir_output_path":  "regression_cases/case_03_diabetes_ckd_coexistence/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_04",
+        "case_name":  "case_04_diabetes_hypertension_explicit",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "diabetes -\u003e hypertension"
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bbc-d700-61217075d3e0",
+        "target_encounter_date":  "2003-03-09T11:06:26+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Evaluation of diabetes and blood pressure",
+        "seed":  3004,
+        "clinician_seed":  4004,
+        "reference_date":  "20100101",
+        "end_date":  "20030408",
+        "module_filename":  "case_04_case_04_diabetes_hypertension_explicit.json",
+        "fhir_output_path":  "regression_cases/case_04_diabetes_hypertension_explicit/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_05",
+        "case_name":  "case_05_diabetes_hypertension_coexistence",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+                                           "diabetes -\u003e hypertension"
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bbd-2dce-c3cbad3d1f40",
+        "target_encounter_date":  "2003-10-15T10:31:39+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Chronic disease follow-up for diabetes",
+        "seed":  3005,
+        "clinician_seed":  4005,
+        "reference_date":  "20100101",
+        "end_date":  "20031114",
+        "module_filename":  "case_05_case_05_diabetes_hypertension_coexistence.json",
+        "fhir_output_path":  "regression_cases/case_05_diabetes_hypertension_coexistence/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_06",
+        "case_name":  "case_06_hypertension_single",
+        "conditions":  [
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bbe-46c9-420c05cc16e7",
+        "target_encounter_date":  "2003-12-26T12:16:00+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Essential hypertension (disorder)",
+        "complaint":  "Evaluation of hypertension",
+        "seed":  3006,
+        "clinician_seed":  4006,
+        "reference_date":  "20100101",
+        "end_date":  "20040125",
+        "module_filename":  "case_06_case_06_hypertension_single.json",
+        "fhir_output_path":  "regression_cases/case_06_hypertension_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_07",
+        "case_name":  "case_07_ckd_stage_three",
+        "conditions":  [
+                           "Chronic kidney disease stage 3 (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bbf-4f07-bc4e10e384e1",
+        "target_encounter_date":  "2003-08-02T11:41:12+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Chronic kidney disease stage 3 (disorder)",
+        "complaint":  "Follow-up for chronic kidney disease stage 3",
+        "seed":  3007,
+        "clinician_seed":  4007,
+        "reference_date":  "20100101",
+        "end_date":  "20030901",
+        "module_filename":  "case_07_case_07_ckd_stage_three.json",
+        "fhir_output_path":  "regression_cases/case_07_ckd_stage_three/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_08",
+        "case_name":  "case_08_hypertension_ckd_relationship",
+        "conditions":  [
+                           "Essential hypertension (disorder)",
+                           "Chronic kidney disease stage 3 (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "hypertension -\u003e CKD"
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc0-a770-030fef37c321",
+        "target_encounter_date":  "2003-10-28T14:14:18+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Essential hypertension (disorder)",
+        "complaint":  "Follow-up for hypertension and chronic kidney disease",
+        "seed":  3008,
+        "clinician_seed":  4008,
+        "reference_date":  "20100101",
+        "end_date":  "20031127",
+        "module_filename":  "case_08_case_08_hypertension_ckd_relationship.json",
+        "fhir_output_path":  "regression_cases/case_08_hypertension_ckd_relationship/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_09",
+        "case_name":  "case_09_diabetes_obesity",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Obesity (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "obesity -\u003e diabetes management"
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc1-0b86-826f8daf47b4",
+        "target_encounter_date":  "2003-06-04T13:39:31+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Follow-up for diabetes and obesity",
+        "seed":  3009,
+        "clinician_seed":  4009,
+        "reference_date":  "20100101",
+        "end_date":  "20030704",
+        "module_filename":  "case_09_case_09_diabetes_obesity.json",
+        "fhir_output_path":  "regression_cases/case_09_diabetes_obesity/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_10",
+        "case_name":  "case_10_diabetes_hyperlipidemia",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Hyperlipidemia (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc2-9ee2-dca6f5631a7d",
+        "target_encounter_date":  "2003-08-15T15:23:51+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Follow-up for diabetes and lipid management",
+        "seed":  3010,
+        "clinician_seed":  4010,
+        "reference_date":  "20100101",
+        "end_date":  "20030914",
+        "module_filename":  "case_10_case_10_diabetes_hyperlipidemia.json",
+        "fhir_output_path":  "regression_cases/case_10_diabetes_hyperlipidemia/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_11",
+        "case_name":  "case_11_diabetes_ckd_hypertension",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Chronic kidney disease stage 1 (disorder)",
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "diabetes -\u003e CKD"
+                                   ],
+        "intended_non_relationships":  [
+                                           "diabetes -\u003e hypertension",
+                                           "hypertension -\u003e CKD"
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc3-c175-fbe7b2d161c3",
+        "target_encounter_date":  "2003-03-22T14:49:04+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Complex follow-up for diabetes, kidney disease, and hypertension",
+        "seed":  3011,
+        "clinician_seed":  4011,
+        "reference_date":  "20100101",
+        "end_date":  "20030421",
+        "module_filename":  "case_11_case_11_diabetes_ckd_hypertension.json",
+        "fhir_output_path":  "regression_cases/case_11_diabetes_ckd_hypertension/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_12",
+        "case_name":  "case_12_copd_single",
+        "conditions":  [
+                           "Chronic obstructive lung disease (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc4-8d10-08c5568f640f",
+        "target_encounter_date":  "2003-03-24T11:55:10+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Chronic obstructive lung disease (disorder)",
+        "complaint":  "Follow-up for chronic obstructive pulmonary disease",
+        "seed":  3012,
+        "clinician_seed":  4012,
+        "reference_date":  "20100101",
+        "end_date":  "20030423",
+        "module_filename":  "case_12_case_12_copd_single.json",
+        "fhir_output_path":  "regression_cases/case_12_copd_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_13",
+        "case_name":  "case_13_copd_hypertension",
+        "conditions":  [
+                           "Chronic obstructive lung disease (disorder)",
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc5-fe8e-d347a9c38356",
+        "target_encounter_date":  "2003-10-30T11:20:23+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Chronic obstructive lung disease (disorder)",
+        "complaint":  "Follow-up for COPD and hypertension",
+        "seed":  3013,
+        "clinician_seed":  4013,
+        "reference_date":  "20100101",
+        "end_date":  "20031129",
+        "module_filename":  "case_13_case_13_copd_hypertension.json",
+        "fhir_output_path":  "regression_cases/case_13_copd_hypertension/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_14",
+        "case_name":  "case_14_asthma_single",
+        "conditions":  [
+                           "Asthma (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc6-1ac0-60424ddc487b",
+        "target_encounter_date":  "2003-01-09T13:04:44+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Asthma (disorder)",
+        "complaint":  "Evaluation of asthma control",
+        "seed":  3014,
+        "clinician_seed":  4014,
+        "reference_date":  "20100101",
+        "end_date":  "20030208",
+        "module_filename":  "case_14_case_14_asthma_single.json",
+        "fhir_output_path":  "regression_cases/case_14_asthma_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_15",
+        "case_name":  "case_15_asthma_rhinitis",
+        "conditions":  [
+                           "Asthma (disorder)",
+                           "Allergic rhinitis (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "rhinitis -\u003e asthma symptoms"
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc7-e495-db6ac541f677",
+        "target_encounter_date":  "2003-08-17T12:29:57+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Asthma (disorder)",
+        "complaint":  "Follow-up for asthma and allergic rhinitis",
+        "seed":  3015,
+        "clinician_seed":  4015,
+        "reference_date":  "20100101",
+        "end_date":  "20030916",
+        "module_filename":  "case_15_case_15_asthma_rhinitis.json",
+        "fhir_output_path":  "regression_cases/case_15_asthma_rhinitis/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_16",
+        "case_name":  "case_16_heart_failure_single",
+        "conditions":  [
+                           "Heart failure (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc8-de45-06e514cd8647",
+        "target_encounter_date":  "2003-08-19T09:36:02+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Heart failure (disorder)",
+        "complaint":  "Follow-up for heart failure",
+        "seed":  3016,
+        "clinician_seed":  4016,
+        "reference_date":  "20100101",
+        "end_date":  "20030918",
+        "module_filename":  "case_16_case_16_heart_failure_single.json",
+        "fhir_output_path":  "regression_cases/case_16_heart_failure_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_17",
+        "case_name":  "case_17_heart_failure_hypertension",
+        "conditions":  [
+                           "Heart failure (disorder)",
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "hypertension -\u003e heart failure"
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bc9-f6af-80134437422c",
+        "target_encounter_date":  "2003-03-26T09:01:15+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Heart failure (disorder)",
+        "complaint":  "Follow-up for heart failure and hypertension",
+        "seed":  3017,
+        "clinician_seed":  4017,
+        "reference_date":  "20100101",
+        "end_date":  "20030425",
+        "module_filename":  "case_17_case_17_heart_failure_hypertension.json",
+        "fhir_output_path":  "regression_cases/case_17_heart_failure_hypertension/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_18",
+        "case_name":  "case_18_obesity_hypertension_diabetes",
+        "conditions":  [
+                           "Obesity (disorder)",
+                           "Essential hypertension (disorder)",
+                           "Diabetes mellitus type 2 (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "obesity -\u003e diabetes",
+                                       "obesity -\u003e hypertension",
+                                       "diabetes -\u003e hypertension"
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bca-734c-0e801c29e1f0",
+        "target_encounter_date":  "2003-06-06T10:45:36+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Obesity (disorder)",
+        "complaint":  "Comprehensive follow-up for metabolic conditions",
+        "seed":  3018,
+        "clinician_seed":  4018,
+        "reference_date":  "20100101",
+        "end_date":  "20030706",
+        "module_filename":  "case_18_case_18_obesity_hypertension_diabetes.json",
+        "fhir_output_path":  "regression_cases/case_18_obesity_hypertension_diabetes/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_19",
+        "case_name":  "case_19_hypothyroidism_single",
+        "conditions":  [
+                           "Hypothyroidism (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bcb-a52b-dfe960b1f0ef",
+        "target_encounter_date":  "2003-01-11T10:10:50+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Hypothyroidism (disorder)",
+        "complaint":  "Follow-up for hypothyroidism",
+        "seed":  3019,
+        "clinician_seed":  4019,
+        "reference_date":  "20100101",
+        "end_date":  "20030210",
+        "module_filename":  "case_19_case_19_hypothyroidism_single.json",
+        "fhir_output_path":  "regression_cases/case_19_hypothyroidism_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_20",
+        "case_name":  "case_20_gerd_single",
+        "conditions":  [
+                           "Gastroesophageal reflux disease (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bcc-1d6b-5699baad0218",
+        "target_encounter_date":  "2003-01-13T07:16:55+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Gastroesophageal reflux disease (disorder)",
+        "complaint":  "Evaluation of gastroesophageal reflux symptoms",
+        "seed":  3020,
+        "clinician_seed":  4020,
+        "reference_date":  "20100101",
+        "end_date":  "20030212",
+        "module_filename":  "case_20_case_20_gerd_single.json",
+        "fhir_output_path":  "regression_cases/case_20_gerd_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_21",
+        "case_name":  "case_21_osteoarthritis_single",
+        "conditions":  [
+                           "Osteoarthritis of knee (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bcd-aecb-1e7e6018aa03",
+        "target_encounter_date":  "2003-08-21T06:42:08+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Osteoarthritis of knee (disorder)",
+        "complaint":  "Evaluation of knee pain from osteoarthritis",
+        "seed":  3021,
+        "clinician_seed":  4021,
+        "reference_date":  "20100101",
+        "end_date":  "20030920",
+        "module_filename":  "case_21_case_21_osteoarthritis_single.json",
+        "fhir_output_path":  "regression_cases/case_21_osteoarthritis_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_22",
+        "case_name":  "case_22_depression_single",
+        "conditions":  [
+                           "Depressive disorder (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bce-a49a-a1089787b346",
+        "target_encounter_date":  "2003-11-01T08:26:29+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Depressive disorder (disorder)",
+        "complaint":  "Follow-up for depressive disorder",
+        "seed":  3022,
+        "clinician_seed":  4022,
+        "reference_date":  "20100101",
+        "end_date":  "20031201",
+        "module_filename":  "case_22_case_22_depression_single.json",
+        "fhir_output_path":  "regression_cases/case_22_depression_single/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_23",
+        "case_name":  "case_23_acute_bronchitis",
+        "conditions":  [
+                           "Acute bronchitis (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bcf-5b07-008dd3839312",
+        "target_encounter_date":  "2003-06-08T07:51:42+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Acute bronchitis (disorder)",
+        "complaint":  "Evaluation of cough due to acute bronchitis",
+        "seed":  3023,
+        "clinician_seed":  4023,
+        "reference_date":  "20100101",
+        "end_date":  "20030708",
+        "module_filename":  "case_23_case_23_acute_bronchitis.json",
+        "fhir_output_path":  "regression_cases/case_23_acute_bronchitis/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_24",
+        "case_name":  "case_24_viral_respiratory_illness",
+        "conditions":  [
+                           "Upper respiratory infection (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bd0-7a49-da7fbcdb5ac9",
+        "target_encounter_date":  "2003-03-16T23:30:48+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Upper respiratory infection (disorder)",
+        "complaint":  "Evaluation of acute viral respiratory illness",
+        "seed":  3024,
+        "clinician_seed":  4024,
+        "reference_date":  "20100101",
+        "end_date":  "20030415",
+        "module_filename":  "case_24_case_24_viral_respiratory_illness.json",
+        "fhir_output_path":  "regression_cases/case_24_viral_respiratory_illness/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_25",
+        "case_name":  "case_25_dental_caries",
+        "conditions":  [
+                           "Dental caries (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bd1-fe3a-1715bf069931",
+        "target_encounter_date":  "2003-10-22T22:56:01+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Dental caries (disorder)",
+        "complaint":  "Evaluation of dental pain from dental caries",
+        "seed":  3025,
+        "clinician_seed":  4025,
+        "reference_date":  "20100101",
+        "end_date":  "20031121",
+        "module_filename":  "case_25_case_25_dental_caries.json",
+        "fhir_output_path":  "regression_cases/case_25_dental_caries/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_26",
+        "case_name":  "case_26_acute_with_diabetes_history",
+        "conditions":  [
+                           "Acute bronchitis (disorder)"
+                       ],
+        "historical_conditions":  [
+                                      "Diabetes mellitus type 2 (disorder)"
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bd2-5553-52751afec2b3",
+        "target_encounter_date":  "2005-01-02T00:40:22+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Acute bronchitis (disorder)",
+        "complaint":  "Evaluation of acute bronchitis",
+        "seed":  3026,
+        "clinician_seed":  4026,
+        "reference_date":  "20100101",
+        "end_date":  "20050131",
+        "module_filename":  "case_26_case_26_acute_with_diabetes_history.json",
+        "fhir_output_path":  "regression_cases/case_26_acute_with_diabetes_history/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_27",
+        "case_name":  "case_27_historical_diabetes_current_uri",
+        "conditions":  [
+                           "Upper respiratory infection (disorder)"
+                       ],
+        "historical_conditions":  [
+                                      "Diabetes mellitus type 2 (disorder)"
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bd3-d026-42e863c9911b",
+        "target_encounter_date":  "2004-08-09T00:05:35+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Upper respiratory infection (disorder)",
+        "complaint":  "Evaluation of upper respiratory infection",
+        "seed":  3027,
+        "clinician_seed":  4027,
+        "reference_date":  "20100101",
+        "end_date":  "20040907",
+        "module_filename":  "case_27_case_27_historical_diabetes_current_uri.json",
+        "fhir_output_path":  "regression_cases/case_27_historical_diabetes_current_uri/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_28",
+        "case_name":  "case_28_historical_multiple_current_htn",
+        "conditions":  [
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+                                      "Diabetes mellitus type 2 (disorder)",
+                                      "Obesity (disorder)"
+                                  ],
+        "intended_relationships":  [
+
+                                   ],
+        "intended_non_relationships":  [
+
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bd4-f737-b7a1525575b1",
+        "target_encounter_date":  "2005-08-10T21:11:40+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Essential hypertension (disorder)",
+        "complaint":  "Evaluation of hypertension",
+        "seed":  3028,
+        "clinician_seed":  4028,
+        "reference_date":  "20100101",
+        "end_date":  "20050909",
+        "module_filename":  "case_28_case_28_historical_multiple_current_htn.json",
+        "fhir_output_path":  "regression_cases/case_28_historical_multiple_current_htn/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_29",
+        "case_name":  "case_29_diabetes_ckd_anemia",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Chronic kidney disease stage 1 (disorder)",
+                           "Anemia (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "diabetes -\u003e CKD"
+                                   ],
+        "intended_non_relationships":  [
+                                           "anemia -\u003e diabetes",
+                                           "anemia -\u003e CKD"
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bd5-e256-33b339858c5d",
+        "target_encounter_date":  "2003-03-18T20:36:54+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Follow-up for diabetes, kidney disease, and anemia",
+        "seed":  3029,
+        "clinician_seed":  4029,
+        "reference_date":  "20100101",
+        "end_date":  "20030417",
+        "module_filename":  "case_29_case_29_diabetes_ckd_anemia.json",
+        "fhir_output_path":  "regression_cases/case_29_diabetes_ckd_anemia/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    },
+    {
+        "case_id":  "case_30",
+        "case_name":  "case_30_multiple_relationships",
+        "conditions":  [
+                           "Diabetes mellitus type 2 (disorder)",
+                           "Chronic kidney disease stage 1 (disorder)",
+                           "Essential hypertension (disorder)"
+                       ],
+        "historical_conditions":  [
+
+                                  ],
+        "intended_relationships":  [
+                                       "diabetes -\u003e CKD",
+                                       "diabetes -\u003e hypertension"
+                                   ],
+        "intended_non_relationships":  [
+                                           "hypertension -\u003e CKD"
+                                       ],
+        "encounter_setting":  "ambulatory",
+        "target_encounter_id":  "00000000-0000-0bd6-8bb4-92b6cee3185a",
+        "target_encounter_date":  "2003-05-29T22:21:14+05:30",
+        "target_encounter_type":  "Follow-up encounter (procedure)",
+        "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+        "complaint":  "Complex follow-up for diabetes, renal disease, and hypertension",
+        "seed":  3030,
+        "clinician_seed":  4030,
+        "reference_date":  "20100101",
+        "end_date":  "20030628",
+        "module_filename":  "case_30_case_30_multiple_relationships.json",
+        "fhir_output_path":  "regression_cases/case_30_multiple_relationships/generated",
+        "validation_status":  "PASS",
+        "validation_errors":  [
+
+                              ]
+    }
+]

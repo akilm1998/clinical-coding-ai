@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_07",
+    "case_name":  "case_07_ckd_stage_three",
+    "conditions":  [
+                       "Chronic kidney disease stage 3 (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bbf-4f07-bc4e10e384e1",
+    "target_encounter_date":  "2003-08-02T11:41:12+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Chronic kidney disease stage 3 (disorder)",
+    "complaint":  "Follow-up for chronic kidney disease stage 3",
+    "seed":  3007,
+    "clinician_seed":  4007,
+    "reference_date":  "20100101",
+    "end_date":  "20030901",
+    "module_filename":  "case_07_case_07_ckd_stage_three.json",
+    "fhir_output_path":  "regression_cases/case_07_ckd_stage_three/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

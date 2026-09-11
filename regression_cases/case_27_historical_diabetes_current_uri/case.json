@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_27",
+    "case_name":  "case_27_historical_diabetes_current_uri",
+    "conditions":  [
+                       "Upper respiratory infection (disorder)"
+                   ],
+    "historical_conditions":  [
+                                  "Diabetes mellitus type 2 (disorder)"
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bd3-d026-42e863c9911b",
+    "target_encounter_date":  "2004-08-09T00:05:35+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Upper respiratory infection (disorder)",
+    "complaint":  "Evaluation of upper respiratory infection",
+    "seed":  3027,
+    "clinician_seed":  4027,
+    "reference_date":  "20100101",
+    "end_date":  "20040907",
+    "module_filename":  "case_27_case_27_historical_diabetes_current_uri.json",
+    "fhir_output_path":  "regression_cases/case_27_historical_diabetes_current_uri/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

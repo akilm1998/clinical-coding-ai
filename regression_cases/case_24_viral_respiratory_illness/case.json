@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_24",
+    "case_name":  "case_24_viral_respiratory_illness",
+    "conditions":  [
+                       "Upper respiratory infection (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bd0-7a49-da7fbcdb5ac9",
+    "target_encounter_date":  "2003-03-16T23:30:48+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Upper respiratory infection (disorder)",
+    "complaint":  "Evaluation of acute viral respiratory illness",
+    "seed":  3024,
+    "clinician_seed":  4024,
+    "reference_date":  "20100101",
+    "end_date":  "20030415",
+    "module_filename":  "case_24_case_24_viral_respiratory_illness.json",
+    "fhir_output_path":  "regression_cases/case_24_viral_respiratory_illness/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

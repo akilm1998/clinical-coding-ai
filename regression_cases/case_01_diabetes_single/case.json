@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_01",
+    "case_name":  "case_01_diabetes_single",
+    "conditions":  [
+                       "Diabetes mellitus type 2 (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bb9-2fdc-cb8ccf99d2ef",
+    "target_encounter_date":  "2003-05-20T12:50:47+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+    "complaint":  "Follow-up for type 2 diabetes mellitus",
+    "seed":  3001,
+    "clinician_seed":  4001,
+    "reference_date":  "20100101",
+    "end_date":  "20030619",
+    "module_filename":  "case_01_case_01_diabetes_single.json",
+    "fhir_output_path":  "regression_cases/case_01_diabetes_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

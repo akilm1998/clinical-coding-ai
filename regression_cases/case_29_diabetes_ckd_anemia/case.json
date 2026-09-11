@@ -1,0 +1,35 @@
+﻿{
+    "case_id":  "case_29",
+    "case_name":  "case_29_diabetes_ckd_anemia",
+    "conditions":  [
+                       "Diabetes mellitus type 2 (disorder)",
+                       "Chronic kidney disease stage 1 (disorder)",
+                       "Anemia (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+                                   "diabetes -\u003e CKD"
+                               ],
+    "intended_non_relationships":  [
+                                       "anemia -\u003e diabetes",
+                                       "anemia -\u003e CKD"
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bd5-e256-33b339858c5d",
+    "target_encounter_date":  "2003-03-18T20:36:54+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+    "complaint":  "Follow-up for diabetes, kidney disease, and anemia",
+    "seed":  3029,
+    "clinician_seed":  4029,
+    "reference_date":  "20100101",
+    "end_date":  "20030417",
+    "module_filename":  "case_29_case_29_diabetes_ckd_anemia.json",
+    "fhir_output_path":  "regression_cases/case_29_diabetes_ckd_anemia/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

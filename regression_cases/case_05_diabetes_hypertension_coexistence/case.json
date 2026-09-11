@@ -1,0 +1,33 @@
+﻿{
+    "case_id":  "case_05",
+    "case_name":  "case_05_diabetes_hypertension_coexistence",
+    "conditions":  [
+                       "Diabetes mellitus type 2 (disorder)",
+                       "Essential hypertension (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+                                       "diabetes -\u003e hypertension"
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bbd-2dce-c3cbad3d1f40",
+    "target_encounter_date":  "2003-10-15T10:31:39+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Diabetes mellitus type 2 (disorder)",
+    "complaint":  "Chronic disease follow-up for diabetes",
+    "seed":  3005,
+    "clinician_seed":  4005,
+    "reference_date":  "20100101",
+    "end_date":  "20031114",
+    "module_filename":  "case_05_case_05_diabetes_hypertension_coexistence.json",
+    "fhir_output_path":  "regression_cases/case_05_diabetes_hypertension_coexistence/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

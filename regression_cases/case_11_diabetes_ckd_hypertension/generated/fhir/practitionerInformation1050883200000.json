@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:112fe4ac-9105-385e-9113-d36c97a63f65",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "112fe4ac-9105-385e-9113-d36c97a63f65",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999997692"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Frami345",
+        "given": [ "Rod343" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Rod343.Frami345@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "115 LINCOLN STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016081216",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999997692"
+    }
+  }, {
+    "fullUrl": "urn:uuid:5f93a2f8-4965-e852-5ebf-821779696a7a",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "5f93a2f8-4965-e852-5ebf-821779696a7a",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999997692"
+        },
+        "display": "Dr. Rod343 Frami345"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "0fa1cab9-83c1-3c85-b7bc-53d8b922e2f7"
+        },
+        "display": "METROWEST MEDICAL CENTER"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "5bf36fce-f48a-395f-bd66-65e47efb8703"
+        },
+        "display": "METROWEST MEDICAL CENTER"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083831000"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Rod343.Frami345@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:15d182b4-00f8-3c8f-bfc5-bf1457251ef5",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "15d182b4-00f8-3c8f-bfc5-bf1457251ef5",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 27
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999957498"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Wintheiser220",
+        "given": [ "Terrence276" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Terrence276.Wintheiser220@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "694 MAIN ST" ],
+        "city": "HOLDEN",
+        "state": "MA",
+        "postalCode": "015201862",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999957498"
+    }
+  }, {
+    "fullUrl": "urn:uuid:84e205e4-b4c7-23e9-5792-6401b215bcd6",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "84e205e4-b4c7-23e9-5792-6401b215bcd6",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999957498"
+        },
+        "display": "Dr. Terrence276 Wintheiser220"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "67cade01-dcfe-37b7-8e2c-b712d9e6fbba"
+        },
+        "display": "RUTLAND FAMILY HEALTH CENTER"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d628041f-ddab-3487-8c7d-9a876997a8c0"
+        },
+        "display": "RUTLAND FAMILY HEALTH CENTER"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088866500"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Terrence276.Wintheiser220@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

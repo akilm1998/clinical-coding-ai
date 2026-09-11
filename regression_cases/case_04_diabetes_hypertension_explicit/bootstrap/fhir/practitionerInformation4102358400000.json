@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:931d0423-bc3f-3b7e-abcb-d675e87a70d2",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "931d0423-bc3f-3b7e-abcb-d675e87a70d2",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 104
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999972992"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Keebler762",
+        "given": [ "Parker433" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Parker433.Keebler762@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "162 CHANDLER ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016092924",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999972992"
+    }
+  }, {
+    "fullUrl": "urn:uuid:4ac4fabf-f5e2-3c4c-0f8f-a6a7470fea20",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "4ac4fabf-f5e2-3c4c-0f8f-a6a7470fea20",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999972992"
+        },
+        "display": "Dr. Parker433 Keebler762"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "7e4a295e-51a9-3064-8f00-b10e1eec7f38"
+        },
+        "display": "FAMILY HEALTH CENTER OF WORCESTER, INC."
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "3b02097b-fcb0-30a7-beef-f5da55444e96"
+        },
+        "display": "FAMILY HEALTH CENTER OF WORCESTER, INC."
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088601080"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Parker433.Keebler762@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:7a6012ec-4c9b-3434-bab6-923b63b3f5ff",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "7a6012ec-4c9b-3434-bab6-923b63b3f5ff",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 3
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999995894"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Pagac496",
+        "given": [ "Celine582" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Celine582.Pagac496@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "123 SUMMER ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016081216",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999995894"
+    }
+  }, {
+    "fullUrl": "urn:uuid:36d6cca8-5ce8-1c5e-6b96-76290dd1039c",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "36d6cca8-5ce8-1c5e-6b96-76290dd1039c",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999995894"
+        },
+        "display": "Dr. Celine582 Pagac496"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "cac6f8b3-eafd-31b3-9fa3-8015752ccc2c"
+        },
+        "display": "VHS ACQUISITION SUBSIDIARY NUMBER 7 INC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "73bbd026-267a-300e-87d9-98c610c0ff73"
+        },
+        "display": "VHS ACQUISITION SUBSIDIARY NUMBER 7 INC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083636211"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Celine582.Pagac496@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_16",
+    "case_name":  "case_16_heart_failure_single",
+    "conditions":  [
+                       "Heart failure (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bc8-de45-06e514cd8647",
+    "target_encounter_date":  "2003-08-19T09:36:02+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Heart failure (disorder)",
+    "complaint":  "Follow-up for heart failure",
+    "seed":  3016,
+    "clinician_seed":  4016,
+    "reference_date":  "20100101",
+    "end_date":  "20030918",
+    "module_filename":  "case_16_case_16_heart_failure_single.json",
+    "fhir_output_path":  "regression_cases/case_16_heart_failure_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

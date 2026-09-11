@@ -1,0 +1,36 @@
+﻿{
+    "case_id":  "case_18",
+    "case_name":  "case_18_obesity_hypertension_diabetes",
+    "conditions":  [
+                       "Obesity (disorder)",
+                       "Essential hypertension (disorder)",
+                       "Diabetes mellitus type 2 (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+                                   "obesity -\u003e diabetes",
+                                   "obesity -\u003e hypertension",
+                                   "diabetes -\u003e hypertension"
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bca-734c-0e801c29e1f0",
+    "target_encounter_date":  "2003-06-06T10:45:36+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Obesity (disorder)",
+    "complaint":  "Comprehensive follow-up for metabolic conditions",
+    "seed":  3018,
+    "clinician_seed":  4018,
+    "reference_date":  "20100101",
+    "end_date":  "20030706",
+    "module_filename":  "case_18_case_18_obesity_hypertension_diabetes.json",
+    "fhir_output_path":  "regression_cases/case_18_obesity_hypertension_diabetes/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

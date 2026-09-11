@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_22",
+    "case_name":  "case_22_depression_single",
+    "conditions":  [
+                       "Depressive disorder (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bce-a49a-a1089787b346",
+    "target_encounter_date":  "2003-11-01T08:26:29+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Depressive disorder (disorder)",
+    "complaint":  "Follow-up for depressive disorder",
+    "seed":  3022,
+    "clinician_seed":  4022,
+    "reference_date":  "20100101",
+    "end_date":  "20031201",
+    "module_filename":  "case_22_case_22_depression_single.json",
+    "fhir_output_path":  "regression_cases/case_22_depression_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

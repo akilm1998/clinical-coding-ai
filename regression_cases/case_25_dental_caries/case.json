@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_25",
+    "case_name":  "case_25_dental_caries",
+    "conditions":  [
+                       "Dental caries (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bd1-fe3a-1715bf069931",
+    "target_encounter_date":  "2003-10-22T22:56:01+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Dental caries (disorder)",
+    "complaint":  "Evaluation of dental pain from dental caries",
+    "seed":  3025,
+    "clinician_seed":  4025,
+    "reference_date":  "20100101",
+    "end_date":  "20031121",
+    "module_filename":  "case_25_case_25_dental_caries.json",
+    "fhir_output_path":  "regression_cases/case_25_dental_caries/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

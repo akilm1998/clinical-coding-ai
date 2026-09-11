@@ -1,0 +1,221 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:45ce6eff-535b-37e2-bed3-1946200aa03f",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "45ce6eff-535b-37e2-bed3-1946200aa03f",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 3
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-procedures-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-labs-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-prescriptions-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/bed-count-extension",
+        "valueInteger": 166
+      } ],
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "45ce6eff-535b-37e2-bed3-1946200aa03f"
+      } ],
+      "active": true,
+      "type": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        } ],
+        "text": "Healthcare Provider"
+      } ],
+      "name": "WORCESTER RECOVERY CENTER AND HOSPITAL",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087524681"
+      } ],
+      "address": [ {
+        "line": [ "309 BELMONT STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016041059",
+        "country": "US"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "Organization",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|45ce6eff-535b-37e2-bed3-1946200aa03f"
+    }
+  }, {
+    "fullUrl": "urn:uuid:ee5239e9-1765-3495-bfe9-e55d2b2c4efa",
+    "resource": {
+      "resourceType": "Location",
+      "id": "ee5239e9-1765-3495-bfe9-e55d2b2c4efa",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" ]
+      },
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "ee5239e9-1765-3495-bfe9-e55d2b2c4efa"
+      } ],
+      "status": "active",
+      "name": "WORCESTER RECOVERY CENTER AND HOSPITAL",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087524681"
+      } ],
+      "address": {
+        "line": [ "309 BELMONT STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016041059",
+        "country": "US"
+      },
+      "position": {
+        "longitude": -71.7694812367883,
+        "latitude": 42.280233499999994
+      },
+      "managingOrganization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "45ce6eff-535b-37e2-bed3-1946200aa03f"
+        },
+        "display": "WORCESTER RECOVERY CENTER AND HOSPITAL"
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|ee5239e9-1765-3495-bfe9-e55d2b2c4efa"
+    }
+  }, {
+    "fullUrl": "urn:uuid:f5b88e0f-3f0a-3400-b56f-26247e2a35ac",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "f5b88e0f-3f0a-3400-b56f-26247e2a35ac",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 104
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-procedures-extension",
+        "valueInteger": 1
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-labs-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-prescriptions-extension",
+        "valueInteger": 0
+      } ],
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "f5b88e0f-3f0a-3400-b56f-26247e2a35ac"
+      } ],
+      "active": true,
+      "type": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        } ],
+        "text": "Healthcare Provider"
+      } ],
+      "name": "EDWARD M KENNEDY COMMUNITY HEALTH CENTER INC",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088521805"
+      } ],
+      "address": [ {
+        "line": [ "585 LINCOLN ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016051906",
+        "country": "US"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "Organization",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|f5b88e0f-3f0a-3400-b56f-26247e2a35ac"
+    }
+  }, {
+    "fullUrl": "urn:uuid:d063366a-1e33-3b3e-9b18-a4bee4003581",
+    "resource": {
+      "resourceType": "Location",
+      "id": "d063366a-1e33-3b3e-9b18-a4bee4003581",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" ]
+      },
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "d063366a-1e33-3b3e-9b18-a4bee4003581"
+      } ],
+      "status": "active",
+      "name": "EDWARD M KENNEDY COMMUNITY HEALTH CENTER INC",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5088521805"
+      } ],
+      "address": {
+        "line": [ "585 LINCOLN ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016051906",
+        "country": "US"
+      },
+      "position": {
+        "longitude": -71.7688972944814,
+        "latitude": 42.2962766
+      },
+      "managingOrganization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "f5b88e0f-3f0a-3400-b56f-26247e2a35ac"
+        },
+        "display": "EDWARD M KENNEDY COMMUNITY HEALTH CENTER INC"
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|d063366a-1e33-3b3e-9b18-a4bee4003581"
+    }
+  }, {
+    "fullUrl": "urn:uuid:bb1ad573-19b8-9cd8-68fb-0e6f684df992",
+    "resource": {
+      "resourceType": "Location",
+      "id": "bb1ad573-19b8-9cd8-68fb-0e6f684df992",
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "bb1ad573-19b8-9cd8-68fb-0e6f684df992"
+      } ],
+      "status": "active",
+      "description": "Patient's Home",
+      "mode": "kind",
+      "physicalType": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+          "code": "ho",
+          "display": "House"
+        } ]
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|bb1ad573-19b8-9cd8-68fb-0e6f684df992"
+    }
+  } ]
+}

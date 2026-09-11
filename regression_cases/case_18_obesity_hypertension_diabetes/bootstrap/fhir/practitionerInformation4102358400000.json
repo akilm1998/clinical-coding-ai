@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:3e917bac-9eed-30c9-9413-c842f7556c9e",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "3e917bac-9eed-30c9-9413-c842f7556c9e",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 104
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999949198"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Leannon79",
+        "given": [ "Valentine262" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Valentine262.Leannon79@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "37 MINUTEMAN WAY" ],
+        "city": "SHREWSBURY",
+        "state": "MA",
+        "postalCode": "015452229",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999949198"
+    }
+  }, {
+    "fullUrl": "urn:uuid:d6b0527a-3726-e2e8-015a-d02da0ce7aad",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "d6b0527a-3726-e2e8-015a-d02da0ce7aad",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999949198"
+        },
+        "display": "Dr. Valentine262 Leannon79"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "a2d45ee8-b930-3169-b612-f602961ad212"
+        },
+        "display": "SUNRISE HEALTHCARE LLC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "47a2789d-e285-3254-8365-34149cfbc8d1"
+        },
+        "display": "SUNRISE HEALTHCARE LLC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "6176509959"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Valentine262.Leannon79@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:57b9bc7b-72b6-3a65-879b-0752397eb421",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "57b9bc7b-72b6-3a65-879b-0752397eb421",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999987693"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Rohan584",
+        "given": [ "Theo630" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Theo630.Rohan584@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "55 LAKE AVE N" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016550002",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999987693"
+    }
+  }, {
+    "fullUrl": "urn:uuid:c87599b4-487c-478b-4279-70596fa33854",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "c87599b4-487c-478b-4279-70596fa33854",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999987693"
+        },
+        "display": "Dr. Theo630 Rohan584"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "1cec4304-9757-3a10-ad4f-7e2090c56131"
+        },
+        "display": "UMASS MEMORIAL MEDICAL CENTER INC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "34d300db-86bd-3ca9-9a41-bf7ac5895e52"
+        },
+        "display": "UMASS MEMORIAL MEDICAL CENTER INC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083340254"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Theo630.Rohan584@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

@@ -1,0 +1,221 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:0fa1cab9-83c1-3c85-b7bc-53d8b922e2f7",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "0fa1cab9-83c1-3c85-b7bc-53d8b922e2f7",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-procedures-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-labs-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-prescriptions-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/bed-count-extension",
+        "valueInteger": 360
+      } ],
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "0fa1cab9-83c1-3c85-b7bc-53d8b922e2f7"
+      } ],
+      "active": true,
+      "type": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        } ],
+        "text": "Healthcare Provider"
+      } ],
+      "name": "METROWEST MEDICAL CENTER",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083831000"
+      } ],
+      "address": [ {
+        "line": [ "115 LINCOLN STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016081216",
+        "country": "US"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "Organization",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|0fa1cab9-83c1-3c85-b7bc-53d8b922e2f7"
+    }
+  }, {
+    "fullUrl": "urn:uuid:5bf36fce-f48a-395f-bd66-65e47efb8703",
+    "resource": {
+      "resourceType": "Location",
+      "id": "5bf36fce-f48a-395f-bd66-65e47efb8703",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" ]
+      },
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "5bf36fce-f48a-395f-bd66-65e47efb8703"
+      } ],
+      "status": "active",
+      "name": "METROWEST MEDICAL CENTER",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083831000"
+      } ],
+      "address": {
+        "line": [ "115 LINCOLN STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016081216",
+        "country": "US"
+      },
+      "position": {
+        "longitude": -71.795274,
+        "latitude": 42.2768165
+      },
+      "managingOrganization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "0fa1cab9-83c1-3c85-b7bc-53d8b922e2f7"
+        },
+        "display": "METROWEST MEDICAL CENTER"
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|5bf36fce-f48a-395f-bd66-65e47efb8703"
+    }
+  }, {
+    "fullUrl": "urn:uuid:6e517750-a29e-3170-a02b-5733ff523458",
+    "resource": {
+      "resourceType": "Organization",
+      "id": "6e517750-a29e-3170-a02b-5733ff523458",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 27
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-procedures-extension",
+        "valueInteger": 1
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-labs-extension",
+        "valueInteger": 0
+      }, {
+        "url": "http://synthetichealth.github.io/synthea/utilization-prescriptions-extension",
+        "valueInteger": 0
+      } ],
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "6e517750-a29e-3170-a02b-5733ff523458"
+      } ],
+      "active": true,
+      "type": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+          "code": "prov",
+          "display": "Healthcare Provider"
+        } ],
+        "text": "Healthcare Provider"
+      } ],
+      "name": "TREE OF LIFE HEALTHCARE ASSOCIATES",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087677931"
+      } ],
+      "address": [ {
+        "line": [ "101 BARRY RD" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016091275",
+        "country": "US"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "Organization",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|6e517750-a29e-3170-a02b-5733ff523458"
+    }
+  }, {
+    "fullUrl": "urn:uuid:96e6f38f-9af5-3f83-aae4-33f45466ae30",
+    "resource": {
+      "resourceType": "Location",
+      "id": "96e6f38f-9af5-3f83-aae4-33f45466ae30",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" ]
+      },
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "96e6f38f-9af5-3f83-aae4-33f45466ae30"
+      } ],
+      "status": "active",
+      "name": "TREE OF LIFE HEALTHCARE ASSOCIATES",
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087677931"
+      } ],
+      "address": {
+        "line": [ "101 BARRY RD" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016091275",
+        "country": "US"
+      },
+      "position": {
+        "longitude": -71.8333408960994,
+        "latitude": 42.3030701
+      },
+      "managingOrganization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "6e517750-a29e-3170-a02b-5733ff523458"
+        },
+        "display": "TREE OF LIFE HEALTHCARE ASSOCIATES"
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|96e6f38f-9af5-3f83-aae4-33f45466ae30"
+    }
+  }, {
+    "fullUrl": "urn:uuid:bb1ad573-19b8-9cd8-68fb-0e6f684df992",
+    "resource": {
+      "resourceType": "Location",
+      "id": "bb1ad573-19b8-9cd8-68fb-0e6f684df992",
+      "identifier": [ {
+        "system": "https://github.com/synthetichealth/synthea",
+        "value": "bb1ad573-19b8-9cd8-68fb-0e6f684df992"
+      } ],
+      "status": "active",
+      "description": "Patient's Home",
+      "mode": "kind",
+      "physicalType": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+          "code": "ho",
+          "display": "House"
+        } ]
+      }
+    },
+    "request": {
+      "method": "POST",
+      "url": "Location",
+      "ifNoneExist": "identifier=https://github.com/synthetichealth/synthea|bb1ad573-19b8-9cd8-68fb-0e6f684df992"
+    }
+  } ]
+}

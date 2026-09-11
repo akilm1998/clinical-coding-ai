@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:06380baf-ecba-3ddd-bdc8-88f18310ce61",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "06380baf-ecba-3ddd-bdc8-88f18310ce61",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999999292"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Roberts511",
+        "given": [ "Hellen346" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Hellen346.Roberts511@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "189 MAY ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016024339",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999999292"
+    }
+  }, {
+    "fullUrl": "urn:uuid:8c3ee83d-e859-2c78-85e5-8dfbd97aea83",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "8c3ee83d-e859-2c78-85e5-8dfbd97aea83",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999999292"
+        },
+        "display": "Dr. Hellen346 Roberts511"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "9d0e702d-50a0-3f4c-9126-0951d560fd4b"
+        },
+        "display": "NEW ENGLAND REHABILITATION SERVICES OF CENTRAL MASSACHUSETTS INC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d95327a0-e893-3837-9027-4566261b3638"
+        },
+        "display": "NEW ENGLAND REHABILITATION SERVICES OF CENTRAL MASSACHUSETTS INC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087916351"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Hellen346.Roberts511@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:c91aba46-0ea4-3255-87e1-6e64d547e921",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "c91aba46-0ea4-3255-87e1-6e64d547e921",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 27
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999950493"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Pfannerstill264",
+        "given": [ "Franklin857" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Franklin857.Pfannerstill264@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "381 PARK AVE" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016101026",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999950493"
+    }
+  }, {
+    "fullUrl": "urn:uuid:a4232500-8fbe-49d8-dd7f-6e34d0f795b9",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "a4232500-8fbe-49d8-dd7f-6e34d0f795b9",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999950493"
+        },
+        "display": "Dr. Franklin857 Pfannerstill264"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "9f368e75-397f-3d77-a317-9a005512a4e2"
+        },
+        "display": "EASTERN & WESTERN MEDICAL CENTER PC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "3e14aaaf-e970-3cb7-8860-c7c6bc62bcd2"
+        },
+        "display": "EASTERN & WESTERN MEDICAL CENTER PC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087923200"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Franklin857.Pfannerstill264@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

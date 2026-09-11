@@ -1,0 +1,219 @@
+{
+  "resourceType": "Bundle",
+  "type": "batch",
+  "entry": [ {
+    "fullUrl": "urn:uuid:149de35b-1529-3028-a9bd-fdce6bd764da",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "149de35b-1529-3028-a9bd-fdce6bd764da",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 27
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999962290"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Rutherford999",
+        "given": [ "Forest317" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Forest317.Rutherford999@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "123 SUMMER ST" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "01608",
+        "country": "US"
+      } ],
+      "gender": "male"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999962290"
+    }
+  }, {
+    "fullUrl": "urn:uuid:501a1d45-02ea-87e0-89c5-9cdb358fcf0d",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "501a1d45-02ea-87e0-89c5-9cdb358fcf0d",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999962290"
+        },
+        "display": "Dr. Forest317 Rutherford999"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "6b2e5b97-70f6-3219-8c99-86de138e6808"
+        },
+        "display": "PARTNERS IN INTERNAL MEDICINE PC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "aabdb697-423e-372e-a071-04f0c79bd21f"
+        },
+        "display": "PARTNERS IN INTERNAL MEDICINE PC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5083637300"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Forest317.Rutherford999@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  }, {
+    "fullUrl": "urn:uuid:6cad50e2-ca7b-3ba6-8365-d547f85d5eb3",
+    "resource": {
+      "resourceType": "Practitioner",
+      "id": "6cad50e2-ca7b-3ba6-8365-d547f85d5eb3",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner" ]
+      },
+      "extension": [ {
+        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+        "valueInteger": 1
+      } ],
+      "identifier": [ {
+        "system": "http://hl7.org/fhir/sid/us-npi",
+        "value": "9999999490"
+      } ],
+      "active": true,
+      "name": [ {
+        "family": "Jaskolski867",
+        "given": [ "Leoma634" ],
+        "prefix": [ "Dr." ]
+      } ],
+      "telecom": [ {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Leoma634.Jaskolski867@example.com",
+        "use": "work"
+      } ],
+      "address": [ {
+        "line": [ "107 LINCOLN STREET" ],
+        "city": "WORCESTER",
+        "state": "MA",
+        "postalCode": "016052431",
+        "country": "US"
+      } ],
+      "gender": "female"
+    },
+    "request": {
+      "method": "POST",
+      "url": "Practitioner",
+      "ifNoneExist": "identifier=http://hl7.org/fhir/sid/us-npi|9999999490"
+    }
+  }, {
+    "fullUrl": "urn:uuid:44873fe7-ead9-fa96-8c02-daba08b6ed7f",
+    "resource": {
+      "resourceType": "PractitionerRole",
+      "id": "44873fe7-ead9-fa96-8c02-daba08b6ed7f",
+      "meta": {
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole" ]
+      },
+      "practitioner": {
+        "identifier": {
+          "system": "http://hl7.org/fhir/sid/us-npi",
+          "value": "9999999490"
+        },
+        "display": "Dr. Leoma634 Jaskolski867"
+      },
+      "organization": {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "de2ceae4-ddad-3174-9a1b-f32ea37e53f8"
+        },
+        "display": "ADCARE HOSPITAL OF WORCESTER INC"
+      },
+      "code": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "specialty": [ {
+        "coding": [ {
+          "system": "http://nucc.org/provider-taxonomy",
+          "code": "208D00000X",
+          "display": "General Practice Physician"
+        } ],
+        "text": "General Practice Physician"
+      } ],
+      "location": [ {
+        "identifier": {
+          "system": "https://github.com/synthetichealth/synthea",
+          "value": "d508d51e-6b75-30e0-b590-31e8919983c4"
+        },
+        "display": "ADCARE HOSPITAL OF WORCESTER INC"
+      } ],
+      "telecom": [ {
+        "system": "phone",
+        "value": "5087999000"
+      }, {
+        "extension": [ {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+          "valueBoolean": true
+        } ],
+        "system": "email",
+        "value": "Leoma634.Jaskolski867@example.com",
+        "use": "work"
+      } ]
+    },
+    "request": {
+      "method": "POST",
+      "url": "PractitionerRole"
+    }
+  } ]
+}

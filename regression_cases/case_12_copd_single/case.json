@@ -1,0 +1,32 @@
+﻿{
+    "case_id":  "case_12",
+    "case_name":  "case_12_copd_single",
+    "conditions":  [
+                       "Chronic obstructive lung disease (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bc4-8d10-08c5568f640f",
+    "target_encounter_date":  "2003-03-24T11:55:10+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Chronic obstructive lung disease (disorder)",
+    "complaint":  "Follow-up for chronic obstructive pulmonary disease",
+    "seed":  3012,
+    "clinician_seed":  4012,
+    "reference_date":  "20100101",
+    "end_date":  "20030423",
+    "module_filename":  "case_12_case_12_copd_single.json",
+    "fhir_output_path":  "regression_cases/case_12_copd_single/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}

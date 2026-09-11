@@ -1,0 +1,33 @@
+﻿{
+    "case_id":  "case_13",
+    "case_name":  "case_13_copd_hypertension",
+    "conditions":  [
+                       "Chronic obstructive lung disease (disorder)",
+                       "Essential hypertension (disorder)"
+                   ],
+    "historical_conditions":  [
+
+                              ],
+    "intended_relationships":  [
+
+                               ],
+    "intended_non_relationships":  [
+
+                                   ],
+    "encounter_setting":  "ambulatory",
+    "target_encounter_id":  "00000000-0000-0bc5-fe8e-d347a9c38356",
+    "target_encounter_date":  "2003-10-30T11:20:23+05:30",
+    "target_encounter_type":  "Follow-up encounter (procedure)",
+    "target_encounter_reason":  "Chronic obstructive lung disease (disorder)",
+    "complaint":  "Follow-up for COPD and hypertension",
+    "seed":  3013,
+    "clinician_seed":  4013,
+    "reference_date":  "20100101",
+    "end_date":  "20031129",
+    "module_filename":  "case_13_case_13_copd_hypertension.json",
+    "fhir_output_path":  "regression_cases/case_13_copd_hypertension/generated",
+    "validation_status":  "PASS",
+    "validation_errors":  [
+
+                          ]
+}
