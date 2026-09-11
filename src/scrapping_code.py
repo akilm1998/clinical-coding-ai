@@ -414,6 +414,70 @@ def get_main_heading_container(
     return None
 
 
+def discover_child_codes(
+    soup: BeautifulSoup,
+    parent_code: str,
+) -> list[dict]:
+    """
+    Discover direct child ICD-10-CM codes from the raw ICD-10Data page.
+
+    A direct child is identified by an ICD-10Data code link whose
+    code starts with the parent code and has exactly one additional
+    character.
+    """
+
+    parent_code = normalize_icd_code(parent_code)
+    results = []
+    seen_codes = set()
+
+    for link in soup.find_all("a", href=True):
+        href = link.get("href")
+
+        if not isinstance(href, str):
+            continue
+
+        if "/ICD10CM/Codes/" not in href:
+            continue
+
+        child_code = href.rstrip("/").split("/")[-1]
+        child_code = normalize_icd_code(child_code)
+
+        if not child_code.startswith(parent_code):
+            continue
+
+        if (
+            child_code.startswith(parent_code)
+            and len(child_code) == len(parent_code) + 1
+            and not child_code.endswith("-")
+        ):
+            continue
+
+        if child_code in seen_codes:
+            continue
+
+        seen_codes.add(child_code)
+
+        container = link.parent
+        description = clean_text(container) if isinstance(container, Tag) else ""
+
+        description = re.sub(
+            rf"^{re.escape(child_code)}\s*",
+            "",
+            description,
+            flags=re.IGNORECASE,
+        ).strip()
+
+        results.append(
+            {
+                "code": child_code,
+                "description": description or None,
+                "url": urljoin(BASE_URL, href),
+            }
+        )
+
+    return results
+
+
 # ============================================================
 # GET DESCRIPTION
 # ============================================================
@@ -1117,13 +1181,22 @@ def get_icd10_info(
         )
 
         # ----------------------------------------------------
-        # STEP 3: Remove unwanted content.
+        # STEP 3: Discover child codes from the RAW page.
+        # ----------------------------------------------------
+
+        child_codes = discover_child_codes(
+            soup,
+            code,
+        )
+
+        # ----------------------------------------------------
+        # STEP 4: Remove unwanted content.
         # ----------------------------------------------------
 
         remove_unwanted_content(soup)
 
         # ----------------------------------------------------
-        # STEP 4: Find exact code container.
+        # STEP 5: Find exact code container.
         # ----------------------------------------------------
 
         heading_container = get_main_heading_container(
@@ -1137,19 +1210,19 @@ def get_icd10_info(
             return None
 
         # ----------------------------------------------------
-        # STEP 5: Extract code metadata.
+        # STEP 6: Extract code metadata.
         # ----------------------------------------------------
 
         metadata = get_code_metadata(heading_container)
 
         # ----------------------------------------------------
-        # STEP 6: Extract sections.
+        # STEP 7: Extract sections.
         # ----------------------------------------------------
 
         sections = extract_dynamic_sections(heading_container)
 
         # ----------------------------------------------------
-        # STEP 7: Return structured data.
+        # STEP 8: Return structured data.
         # ----------------------------------------------------
 
         return {
@@ -1157,6 +1230,7 @@ def get_icd10_info(
             "description": get_description(heading_container),
             "url": url,
             "billable": metadata["billable"],
+            "child_codes": child_codes,
             "sections": sections,
         }
 
@@ -1229,3 +1303,33 @@ if __name__ == "__main__":
 
         if data:
             print_icd10_info(data)
+
+            # ------------------------------------------------
+            # SHOW DISCOVERED CHILD CODES
+            # ------------------------------------------------
+
+            children = data.get("child_codes", [])
+
+            print()
+            print("=" * 70)
+            print(f"CHILD CODES FOR: {code}")
+            print(f"CHILD CODES FOUND: {len(children)}")
+            print("=" * 70)
+
+            if not children:
+                print("No child codes found.")
+            else:
+                for child in children:
+                    print()
+                    print(f"CODE: {child['code']}")
+                    print(f"DESCRIPTION: {child['description']}")
+                    print(f"URL: {child['url']}")
+
+            print()
+            print("=" * 70)
+
+            # except requests.exceptions.RequestException as exc:
+            #     print(f"Unable to retrieve hierarchy data: {exc}")
+
+            # finally:
+            #     session.close()

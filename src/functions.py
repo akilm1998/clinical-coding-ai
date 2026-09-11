@@ -6,6 +6,8 @@ from datetime import date, datetime
 
 from scrapping_code import get_icd10_info
 
+MAX_CODING_CANDIDATES = 50
+
 
 def get_data(patient_data: str):
     with open(patient_data, "r") as file:
@@ -436,7 +438,7 @@ def build_coding_context(data, encounter_id):
     }
 
 
-def collect_unique_codes(results: dict) -> list:
+def collect_unique_codes(results: list[dict]) -> list:
     unique_codes = set()
 
     for result in results:
@@ -545,6 +547,80 @@ def analyze_scraped_results(scraped_results):
         "largest_code": largest_code,
         "largest_code_characters": largest_code_characters,
     }
+
+
+def expand_non_billable_codes(
+    results: list[dict],
+) -> dict[str, dict]:
+    """
+    Build the canonical unique ICD-10 candidate pool.
+
+    Normal retrieved candidates are added first. If a candidate is
+    non-billable, its direct child codes are discovered and each child
+    is fetched through get_icd10_info() so that it has the same
+    complete ICD-10 information as a normal code.
+    """
+
+    unique_codes = {}
+
+    # ---------------------------------------------------------
+    # STEP 1: Collect all normally retrieved candidates.
+    # ---------------------------------------------------------
+
+    unique_code_list = collect_unique_codes(results)
+
+    unique_codes = {code: {"code": code} for code in unique_code_list}
+
+    # ---------------------------------------------------------
+    # STEP 2: Expand non-billable candidates.
+    # ---------------------------------------------------------
+
+    original_codes = list(unique_codes.keys())
+
+    for code in original_codes:
+        # if len(unique_codes) >= MAX_CODING_CANDIDATES:
+        #     break
+
+        icd_info = get_icd10_info(code)
+
+        if not icd_info:
+            continue
+
+        # Store complete ICD-10 metadata for every normal candidate.
+        unique_codes[code] = icd_info
+
+        # Billable candidates require no hierarchy expansion.
+        if icd_info.get("billable") is not False:
+            continue
+
+        child_codes = icd_info.get("child_codes", [])
+
+        # -----------------------------------------------------
+        # Expand direct child codes.
+        # -----------------------------------------------------
+
+        for child in child_codes:
+            child_code = child.get("code")
+
+            if not child_code:
+                continue
+
+            if child_code in unique_codes:
+                continue
+
+            print(f"Expanding {code} -> {child_code}")
+
+            child_info = get_icd10_info(child_code)
+
+            if not child_info:
+                continue
+
+            # Store complete ICD-10 metadata for the child code.
+            unique_codes[child_code] = child_info
+
+    print(f"UNIQUE CODES: {unique_codes}")
+
+    return unique_codes
 
 
 def analyze_section_sizes(scraped_results):

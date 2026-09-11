@@ -2,491 +2,293 @@ def generate_clinical_conditions(coding_context, client):
     prompt = f"""
 You are an experienced clinical documentation reviewer.
 
-Review the supplied coding context and identify the clinically relevant
-conditions for the current encounter.
+Analyze the supplied coding context and identify the clinical conditions
+and clinically supported relationships relevant to the current encounter.
 
-Your task is to:
+Your output will be used by a downstream deterministic ICD-10-CM retrieval
+and coding system. Your job is clinical evidence extraction and terminology
+enrichment only. Do NOT perform the final coding decision.
 
-1. Identify conditions relevant to the current encounter.
-2. Distinguish current conditions from historical conditions.
-3. Identify clinically meaningful relationships between conditions when
-   supported by the overall supplied clinical evidence.
-4. Enrich conditions and relationships with medically precise terminology
-   that can improve downstream ICD-10-CM candidate retrieval.
-
-Coding context:
+CODING CONTEXT
 {coding_context}
 
 
-CORE RULES:
+1. SOURCE OF TRUTH
 
-- Use the supplied coding context as the source of truth.
-- Return only conditions supported by the supplied clinical context.
-- Consider the current encounter issues and current encounter documentation first.
-- "current_issues" contains conditions explicitly associated with the current
-  encounter and should be treated as current-encounter evidence.
-- "active_conditions" contains conditions that are clinically active in the
-  patient's history as of the current encounter date. An active condition is
-  NOT automatically a current-encounter condition.
-- For each active condition, determine whether the supplied
-  "condition_evidence" or current encounter information establishes that the
-  condition is relevant to the current encounter.
-- Classify an active condition as a current condition only when the supplied
-  evidence establishes current-encounter relevance.
-- If an active condition is not relevant to the current encounter, do not place
-  it in "current_conditions".
-- Place an active condition in "historical_conditions" only when the supplied
-  context establishes that it is a relevant historical condition.
-- If an active condition has no evidence establishing relevance to the current
-  encounter or relevant historical context, omit it rather than treating it
-  as current.
-- Do not include historical conditions merely because they exist somewhere
-  in the patient's record.
-- Preserve the condition status supported by the supplied context.
-- Distinguish medical conditions from social, demographic, administrative,
-  or other non-medical findings.
-- Do not assign ICD-10, ICD-9, CPT, SNOMED, or other billing codes.
-- Do not make the final coding decision.
-- Do not determine primary or secondary diagnosis sequencing.
-- Do not determine billing reportability.
+- Use only the supplied coding context.
+- Do not add facts from general medical knowledge.
+- Do not assign ICD-10-CM, ICD-9, CPT, SNOMED, or other codes.
+- Do not determine diagnosis sequencing or billing/reportability.
+- Do not infer a diagnosis merely because a symptom, finding, medication,
+  procedure, or other condition commonly occurs with it.
 
 
-ENCOUNTER RELEVANCE AND TEMPORAL STATUS:
+2. ENCOUNTER RELEVANCE
 
 The current encounter is the encounter identified by "current_encounter".
 
-An active condition may have been diagnosed or documented during an earlier
-encounter. The fact that its clinicalStatus is "active" means that the
-condition remains active in the patient's clinical history; it does not mean
-that the condition is part of the current encounter.
+Determine encounter relevance from evidence connecting a condition to THAT
+current encounter.
 
-Use encounter references, encounter dates, current_issues, current clinical
-notes, and condition_evidence to determine whether an active condition is
+Strong evidence includes:
+- explicit association with the current encounter
+- inclusion in current_issues
+- current encounter diagnosis/reason
+- current assessment or plan
+- current treatment or management
+- explicit documentation that the condition is being evaluated, addressed,
+  monitored, treated, or otherwise considered during the encounter
+- another supplied statement explicitly establishing current relevance
+
+Historical evidence does NOT establish current-encounter relevance by itself.
+
+In particular, the following do NOT by themselves make a condition relevant
+to the current encounter:
+- clinicalStatus = active
+- verificationStatus = confirmed
+- presence in active_conditions
+- an encounter diagnosis from an earlier encounter
+- an old clinical note
+- historical existence in the patient record
+- co-occurrence with a current condition
+- a medication or procedure that could plausibly be related
+
+When evidence from the current encounter conflicts with older or
+patient-level information, use the temporal and encounter-specific evidence
+to determine the classification.
+
+Explicit current-encounter statements that a condition is historical,
+not assessed, not addressed, unrelated, excluded, or otherwise not relevant
+are negative evidence for current encounter relevance.
+
+Do not override explicit negative current-encounter evidence merely because
+the condition remains active in the patient's longitudinal record.
+
+An active patient-level condition may therefore have:
+    "encounter_relevance": false
+
+Do not force every active condition into the current encounter.
+
+If the evidence does not establish current relevance and does not establish
+a meaningful historical classification, omit the condition.
+
+
+3. CURRENT VS HISTORICAL CONDITIONS
+
+CURRENT CONDITIONS:
+Include a condition only when the supplied evidence establishes that it is
 relevant to the current encounter.
 
-For example:
+HISTORICAL CONDITIONS:
+Include a condition when the supplied context establishes that it is a
+relevant historical condition but does not establish current-encounter
+relevance.
 
-- Current encounter: 2026 general examination
-- Active condition: Type 2 diabetes mellitus
-- Condition evidence: diabetes documented in a 2000 encounter
-- Current encounter documentation: no diabetes assessment, treatment, or
-  other indication that diabetes is relevant to the 2026 encounter
+Do not classify a condition as historical solely because its data originates
+from an older record if the supplied context does not establish that it is
+a meaningful historical condition.
 
-In this situation, do NOT classify diabetes as a current condition merely
-because it is active.
-
-Likewise, do not assume that every active chronic condition must be coded for
-every encounter.
-
-An older condition may be classified as historical when the supplied context
-supports that historical classification. Otherwise, omit it from the condition
-lists rather than treating it as current.
+Preserve the condition's documented clinical status. "status" describes
+the supported patient/clinical status; it does not determine encounter
+relevance.
 
 
-CLINICAL TERMINOLOGY:
+4. CONDITIONS VS SYMPTOMS/FINDINGS
 
-For each condition, provide:
+Only medical conditions belong in:
+- current_conditions
+- historical_conditions
 
-- "clinical_terms": medically precise terminology that represents the same
-  documented clinical concept.
-- "search_terms": terminology useful for retrieving ICD-10-CM candidates
-  for that same documented clinical concept.
+Symptoms, signs, findings, complaints, observations, procedures, social
+factors, demographic information, and administrative information are not
+automatically conditions.
 
-Do not combine a condition with another condition merely because both are
-present in the same encounter.
+A symptom or finding may provide evidence for a condition or participate in
+a relationship, but do not convert it into a disease without supporting
+evidence.
 
-For example, if the context documents obesity and pregnancy separately,
-do not create terminology such as "maternal obesity complicating pregnancy"
-unless the supplied clinical evidence supports that relationship.
 
-Search terms must represent the documented clinical concept or a clinically
-supported relationship involving that concept.
+5. CLINICAL TERMINOLOGY
 
-Use the most clinically specific terminology that is supported by the
-supplied evidence.
+For every identified condition, provide:
 
-Do not introduce new clinical facts while enriching terminology.
+"clinical_terms":
+Medically precise terminology representing the same documented clinical
+concept.
 
-A qualifier or characteristic may be included only when it is explicitly
-documented or directly and unambiguously derivable from the supplied
-clinical context.
+"search_terms":
+Terminology useful for downstream ICD-10-CM retrieval.
 
-This applies to characteristics such as:
+Terminology may normalize wording or use supported clinical synonyms, but
+must preserve the factual meaning of the documentation.
 
+Only include specificity supported by the supplied evidence.
+
+Do not invent or infer:
 - severity
 - stage
 - laterality
 - anatomical site
 - acuity
 - chronicity
+- subtype
 - recurrence
-- timing
 - duration
 - pregnancy characteristics
-- gestational information
-- pregnancy order
-- number of occurrences
 - complications
 - manifestations
-- underlying conditions
-- other clinically relevant qualifiers
+- underlying causes
+- other qualifiers
 
-Do not infer missing specificity simply because it is clinically plausible,
-commonly associated with the condition, or useful for finding a more
-specific ICD-10-CM code.
+Do not broaden a specific documented concept into an ambiguous term merely
+to increase retrieval matches.
 
-If the evidence does not support greater specificity, use the more general
-medically accurate terminology supported by the source.
-
-Clinical terminology may improve the wording of a documented concept, but
-must not change its factual meaning.
-
-Keep qualifiers attached to the condition or clinical event they actually
-describe. Do not transfer characteristics from one condition or event to
-another.
+If the documented terminology is already the most faithful representation,
+it is acceptable to reuse it.
 
 
-SEARCH-TERM SPECIFICITY:
+6. RELATIONSHIPS
 
-Search terms are retrieval terminology, but they must preserve the clinical
-specificity of the documented concept.
+Identify a relationship only when the supplied clinical evidence supports
+a meaningful connection between the entities.
 
-- Preserve documented qualifiers such as stage, severity, laterality,
-  anatomical site, acuity, chronicity, subtype, and other clinically
-  meaningful distinctions in search terms whenever those qualifiers are
-  relevant to identifying the documented condition.
-- Do not replace a specific documented condition with a broader synonym when
-  doing so could retrieve a different clinical concept or ICD-10-CM category.
-- Do not generate a synonym that changes, weakens, or removes a clinically
-  meaningful qualifier from the documented condition.
-- A search term may be broader only when it remains clinically equivalent
-  to the documented concept and does not introduce ambiguity between
-  clinically distinct conditions or ICD-10-CM candidates.
-- When the documented condition contains a stage or severity, prefer search
-  terms that explicitly retain that stage or severity.
-- When no clinically equivalent alternative terminology can preserve the
-  documented specificity, use the original documented terminology as the
-  search term rather than inventing a broader synonym.
+Evidence may include:
+- explicit relationship statements
+- assessment/plan documentation
+- causal or etiological statements
+- underlying-condition/manifestation statements
+- documented complications
+- explicit attribution of a symptom or finding to a condition
+- structured clinical evidence
+- multiple pieces of evidence that collectively establish the relationship
 
-For example:
+Mere co-occurrence is insufficient.
 
-If the documented condition is:
-
-    Chronic kidney disease stage 1
-
-Good search terms include:
-
-    "Chronic kidney disease stage 1"
-    "CKD stage 1"
-
-Do NOT use a broader or potentially ambiguous term such as:
-
-    "Mild chronic kidney disease"
-
-because the broader term may correspond to a different CKD stage or
-different ICD-10-CM candidate.
-
-This principle applies generally and is not limited to chronic kidney disease.
-
-For each relationship, provide:
-
-- "relationship": a concise description of the supported clinical
-  relationship.
-- "clinical_terms": medically precise terminology describing the relationship.
-- "search_terms": terminology useful for retrieving ICD-10-CM candidates
-  for that relationship.
-
-
-RELATIONSHIPS:
-
-Relationship extraction is a clinical reasoning task.
-
-Evaluate the conditions together using the complete supplied clinical
-context. Do not evaluate each condition independently when determining
-whether a clinically meaningful relationship exists.
-
-Identify a relationship when the overall clinical evidence supports a
-meaningful connection between two or more documented conditions.
-
-A relationship can be supported by:
-
-- an explicit statement in a clinical note
-- an assessment or plan statement
-- an encounter diagnosis
-- structured clinical terminology
-- the combination of multiple documented clinical conditions
-- observations or procedures that provide supporting clinical context
-- other clinical evidence that, when considered together, supports the
-  relationship
-
-The relationship may represent:
-
-- causal relationship
-- etiological relationship
-- underlying condition and manifestation
-- complication
-- associated condition
-- current condition and relevant historical condition
-- other clinically meaningful relationship
-
-Do not require the relationship to appear as one literal sentence.
-
-The supplied clinical context may contain separate pieces of evidence that
-must be correlated to identify a clinically meaningful relationship.
-
-For example, if the supplied context contains:
-
-- Type 2 diabetes mellitus
-- Chronic kidney disease
-- both conditions are active and confirmed
-- both conditions are relevant to the same clinical case
-
-evaluate whether the overall clinical evidence supports a relationship
-between Type 2 diabetes mellitus and chronic kidney disease.
-
-If the clinical evidence supports that the CKD is related to the diabetes,
-identify that relationship.
-
-However, do not automatically create the relationship merely because
-diabetes and CKD coexist.
-
-Distinguish between:
-
-    Type 2 diabetes + CKD
-    -> relationship may be unsupported
-
-and:
-
-    Type 2 diabetes + CKD
-    + additional clinical evidence supporting a diabetes-related kidney
-      condition
-    -> clinically supported relationship
-
-Do not infer a relationship solely because two conditions:
-
-- share the same encounter
-- occur at the same time
-- appear in the same patient
-- are medically plausible associations
+Do NOT infer a relationship merely because two entities:
+- occur in the same encounter
+- occur in the same patient
+- are both active
+- are both confirmed
 - commonly occur together
-- have a known epidemiological association
+- are medically associated
+- have a known coding relationship
 
-However, these facts may be considered together with other clinical
-evidence when determining whether the overall case supports a meaningful
-relationship.
+Do not use ICD-10-CM knowledge to manufacture a clinical relationship.
 
-The goal is to identify relationships supported by the clinical case, not
-to require a literal relationship statement.
+Use the least assumptive description that accurately represents the evidence.
+Do not strengthen a documented relationship into a more specific diagnosis.
 
-IMPORTANT:
+A relationship may involve:
+- two conditions
+- a condition and symptom
+- a condition and finding
+- another clinically relevant clinical entity
 
-Do not use ICD-10-CM coding knowledge to manufacture a clinical
-relationship.
-
-For example, do not reason:
-
-"ICD-10-CM has a diabetes-with-CKD combination code, therefore diabetes must
-be causing this patient's CKD."
-
-The clinical relationship must be supported by the supplied clinical
-evidence.
-
-Likewise, do not reject a clinically supported relationship merely because
-the relationship is not explicitly written as a single sentence.
-
-When a relationship is identified, describe the actual relationship
-supported by the evidence.
-
-Do not strengthen the relationship beyond the evidence.
-
-For example, if the supplied evidence supports that CKD is related to Type 2
-diabetes mellitus, do not additionally claim:
-
-- diabetic nephropathy
-- proteinuria
-- renal failure
-- a specific diabetic renal manifestation
-
-unless those facts are separately supported.
-
-Relationship extraction is separate from final coding.
-
-You are identifying the clinical relationship that exists in the supplied
-case so that downstream ICD-10-CM retrieval and coding reasoning can evaluate
-it.
-
-Do not assign an ICD-10-CM code to the relationship.
+A symptom or finding participating in a relationship does not automatically
+become a condition in the condition lists.
 
 
-RELATIONSHIP TERMINOLOGY:
+7. RELATIONSHIP TERMINOLOGY
 
-For each identified relationship:
+For each supported relationship provide:
 
-- "relationship": describe the clinically supported connection between the
-  conditions.
-- "clinical_terms": provide medically precise terminology representing that
-  relationship.
-- "search_terms": provide terminology useful for retrieving ICD-10-CM
-  candidates representing that relationship.
+"relationship":
+A concise description of the supported clinical connection.
 
-Relationship terminology may be more specific than the individual condition
-names when the relationship itself provides that specificity.
+"clinical_terms":
+Medically precise terminology representing that relationship.
 
-For example, if the clinical evidence supports a relationship between
-Type 2 diabetes mellitus and chronic kidney disease, useful terminology
-could include:
+"search_terms":
+Useful terminology for downstream ICD-10-CM retrieval.
 
-- diabetes mellitus with chronic kidney disease
-- diabetic chronic kidney disease
-- chronic kidney disease due to Type 2 diabetes mellitus
+Relationship terminology must remain faithful to the supplied evidence.
 
-Only use terminology that is supported by the supplied clinical evidence.
-
-Do not use relationship terminology merely because it would lead to a more
-specific ICD-10-CM code.
+Do not introduce a complication, etiology, manifestation, or other clinical
+relationship solely because it would produce a more specific code.
 
 
-SEARCH TERMS:
+8. DYNAMIC OUTPUT
 
-Search terms are for retrieval only.
+Do not assume a fixed number of conditions or relationships.
 
-They should help a downstream ICD-10-CM search find plausible candidate
-codes representing the documented clinical concept.
+There may be:
+- zero or more current conditions
+- zero or more historical conditions
+- zero or more relationships
 
-Search terms may include:
+Evaluate all relevant supplied evidence before deciding.
 
-- the original condition terminology
-- standard medical terminology
-- supported clinical synonyms
-- supported qualifiers
-- supported relationship terminology
+Do not duplicate the same condition merely because it appears in multiple
+FHIR resources.
 
-When a clinically supported relationship is identified, relationship search
-terms may represent the combined clinical concept.
-
-For example:
-
-- Type 2 diabetes mellitus with chronic kidney disease
-- diabetic chronic kidney disease
-- chronic kidney disease due to Type 2 diabetes mellitus
-
-All search terms must remain clinically faithful to the documented concept.
-
-Do not broaden, weaken, or remove clinically meaningful specificity merely
-to increase the number of retrieval matches.
-
-Do not include ICD-10-CM codes in the output.
-
-Do not choose a code based on the search terms.
+Do not create duplicate relationships representing the same supported
+clinical connection.
 
 
-DYNAMIC CARDINALITY:
+9. OUTPUT
 
-- Do not assume a fixed number of conditions.
-- Include every condition supported by the supplied context that meets the
-  relevance criteria.
-- There may be zero, one, or multiple current conditions.
-- There may be zero, one, or multiple historical conditions.
-- There may be zero, one, or multiple relationships.
-- Multiple relationships may involve the same condition.
-- A condition does not require a relationship with another condition.
-- If no supported relationships exist, return an empty relationships list.
-
-
-FIELD DEFINITIONS:
-
-- "name": the condition identified from the supplied clinical context.
-- "status": the status supported by the supplied context.
-- "encounter_relevance": whether the supplied clinical evidence establishes
-  that the condition is relevant to the current encounter. Do not set this
-  to true merely because the condition is active in the patient's history.
-- "clinical_terms": medically precise terminology representing the same
-  documented clinical concept.
-- "search_terms": retrieval terminology for finding plausible ICD-10-CM
-  candidates while preserving the documented clinical specificity.
-- "condition_1": first condition participating in the relationship.
-- "condition_2": second condition participating in the relationship.
-- "relationship": clinically meaningful description of the supported
-  relationship between the conditions.
-
-None of these fields represent a final ICD-10-CM coding decision.
-
-
-OUTPUT:
-
-Return ONLY valid JSON using this structure:
+Return ONLY valid JSON using exactly this structure:
 
 {{
     "current_conditions": [
         {{
-            "name": "<condition name from the supplied context>",
-            "status": "<status supported by the supplied context>",
+            "name": "<documented condition>",
+            "status": "<supported clinical status>",
             "encounter_relevance": true,
             "clinical_terms": [
-                "<medically precise supported term>"
+                "<supported precise terminology>"
             ],
             "search_terms": [
-                "<useful supported ICD-10-CM retrieval term>"
+                "<supported retrieval terminology>"
             ]
         }}
     ],
     "historical_conditions": [
         {{
-            "name": "<condition name from the supplied context>",
-            "status": "<status supported by the supplied context>",
-            "encounter_relevance": true,
+            "name": "<documented condition>",
+            "status": "<supported clinical status>",
+            "encounter_relevance": false,
             "clinical_terms": [
-                "<medically precise supported term>"
+                "<supported precise terminology>"
             ],
             "search_terms": [
-                "<useful supported ICD-10-CM retrieval term>"
+                "<supported retrieval terminology>"
             ]
         }}
     ],
     "relationships": [
         {{
-            "condition_1": "<condition name>",
-            "condition_2": "<condition name>",
+            "condition_1": "<first supported clinical entity>",
+            "condition_2": "<second supported clinical entity>",
             "relationship": "<supported clinical relationship>",
             "clinical_terms": [
-                "<medically precise supported relationship term>"
+                "<supported relationship terminology>"
             ],
             "search_terms": [
-                "<useful supported ICD-10-CM retrieval term>"
+                "<supported retrieval terminology>"
             ]
         }}
     ]
 }}
 
-IMPORTANT:
+OUTPUT CONSTRAINTS
 
-- Populate all values dynamically from the supplied coding context.
-- Do not copy the placeholder values into the output.
-- Do not invent conditions or relationships.
-- Do not invent clinical qualifiers.
-- Do not include unsupported specificity.
-- Evaluate multiple pieces of clinical evidence together when determining
-  relationships.
-- Do not require an explicit relationship sentence when the overall
-  clinical evidence supports the relationship.
-- Do not infer relationships solely from simple co-occurrence.
-- Preserve clinically meaningful specificity in search terms.
-- Do not replace a specific documented condition with a broader or ambiguous
-  synonym when that could lead to a different clinical concept or
-  ICD-10-CM candidate.
-- If no additional clinical terminology is supported, return an empty
-  "clinical_terms" list.
-- If no useful supported retrieval terminology exists, return an empty
-  "search_terms" list.
-- If there are no relevant current conditions, return an empty list.
-- If there are no relevant historical conditions, return an empty list.
-- If there are no supported relationships, return an empty list.
-- Do not include ICD-10-CM codes anywhere in the output.
-- Do not include Markdown code fences.
-- Do not include explanations before or after the JSON.
-- Do not use terminology that implies a clinical relationship, complication,
-  encounter subtype, temporal state, or other qualifier unless that
-  implication is supported by the supplied evidence.
+- Return only JSON.
+- Do not include Markdown.
+- Do not include explanations.
+- Do not include ICD-10-CM codes.
+- Do not invent conditions.
+- Do not invent relationships.
+- Do not invent qualifiers.
+- Do not infer unsupported specificity.
+- Do not use coding conventions as clinical evidence.
+- Keep encounter relevance evidence-based.
+- Current encounter evidence takes precedence over older evidence when
+  determining current-encounter relevance.
+- If no relevant conditions exist, return an empty list.
+- If no supported relationships exist, return an empty list.
+- Empty "clinical_terms" or "search_terms" lists are allowed when no
+  additional supported terminology exists.
 """
 
     response = client.responses.create(
