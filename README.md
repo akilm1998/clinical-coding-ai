@@ -23,7 +23,6 @@ Planned visual interface for exploring longitudinal patient records and inspecti
 | [V1](https://github.com/akilm1998/clinical-coding-ai/tree/v1) | `v1` | Synthetic clinical note generation |
 | [V2](https://github.com/akilm1998/clinical-coding-ai/tree/v2) | `v2` | ICD-10-CM data retrieval |
 | [V3](https://github.com/akilm1998/clinical-coding-ai/tree/v3) | `v3` | Evidence-based clinical coding |
-| V4 | `v4` | Longitudinal coding visualization |
 
 ## Current Version
 
