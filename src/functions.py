@@ -6,7 +6,7 @@ from datetime import date, datetime
 
 from scrapping_code import get_icd10_info
 
-MAX_CODING_CANDIDATES = 50
+# MAX_CODING_CANDIDATES = 50
 
 
 def get_data(patient_data: str):
