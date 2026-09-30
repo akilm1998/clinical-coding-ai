@@ -1,0 +1,16 @@
+{
+  "selected_codes": [
+    {
+      "code": "I12.9",
+      "role": "primary",
+      "reason": ""
+    }
+  ],
+  "additional_codes": [
+    {
+      "code": "N18.30",
+      "reason": ""
+    }
+  ],
+  "rejected_candidates": []
+}

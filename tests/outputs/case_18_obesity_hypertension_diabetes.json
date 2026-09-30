@@ -1,0 +1,21 @@
+{
+  "selected_codes": [
+    {
+      "code": "E66.9",
+      "role": "primary",
+      "reason": ""
+    },
+    {
+      "code": "E11.9",
+      "role": "secondary",
+      "reason": ""
+    },
+    {
+      "code": "I10",
+      "role": "secondary",
+      "reason": ""
+    }
+  ],
+  "additional_codes": [],
+  "rejected_candidates": []
+}
