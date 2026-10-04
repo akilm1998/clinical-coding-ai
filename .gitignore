@@ -9,3 +9,5 @@ test.txt
 /*.parquet
 README_dup.md
 src/patients/*
+/build
+/src/clinical_coding_ai.egg-info
