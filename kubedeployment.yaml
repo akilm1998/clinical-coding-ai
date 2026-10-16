@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clinical-coding-deployment
+  labels:
+    app: clinical-coding
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clinical-coding
+  template:
+    metadata:
+      labels:
+        app: clinical-coding
+    spec:
+      containers:
+      - name: clinical-coding
+        image: clinical-coding-ai:v3.0
+        envFrom:
+        - secretRef:
+            name: clinical-secret
