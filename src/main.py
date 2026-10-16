@@ -48,8 +48,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # patient_data_file = f"{BASE_DIR}\\regression_cases\\case_27_historical_diabetes_current_uri\\generated\\fhir\\Calandra120_Feil794_00000000-0000-0bd3-fe69-2c0da0ad47f6.json"  # 27
 # patient_data_file = f"{BASE_DIR}\\regression_cases\\case_28_historical_multiple_current_htn\\generated\\fhir\\Jeanelle736_Mosciski958_00000000-0000-0bd4-5bb8-a57220a02eda.json"  # 28
 # patient_data_file = f"{BASE_DIR}\\regression_cases\\case_29_diabetes_ckd_anemia\\generated\\fhir\\Della552_Altenwerth646_00000000-0000-0bd5-07fb-bdb90703f6a1.json"  # 29
-patient_data_file = f"{BASE_DIR}\\regression_cases\\case_30_multiple_relationships\\generated\\fhir\\Mellissa304_Mueller846_00000000-0000-0bd6-0332-74e353d89f4c.json"  # 30
-
+# patient_data_file = f"{BASE_DIR}\\regression_cases\\case_30_multiple_relationships\\generated\\fhir\\Mellissa304_Mueller846_00000000-0000-0bd6-0332-74e353d89f4c.json"  # 30
+# patient_data_file = f"{BASE_DIR}\\regression_cases\\Deon400_Hirthe744_c0032f7a-870f-6521-7750-57a94205f1bc.json"  # 31
+patient_data_file = (
+    BASE_DIR
+    / "regression_cases"
+    / "Johnna810_Conchita9_Klein929_b1adef1c-ac37-06a7-d632-9f00345e88cc.json"
+)  # 32
 
 if __name__ == "__main__":
     # -----------------------------------
